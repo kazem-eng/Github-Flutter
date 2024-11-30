@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class RippleButton extends StatelessWidget {
-  const RippleButton({
+class MMRippleButton extends StatelessWidget {
+  const MMRippleButton({
     required this.child,
     this.borderRadius,
     this.onLongPress,

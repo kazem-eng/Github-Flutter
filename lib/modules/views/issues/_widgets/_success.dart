@@ -38,18 +38,15 @@ class _SuccessState extends State<_Success> {
   Widget build(BuildContext context) {
     final vm = context.watch<IssuesViewmodel>();
     final issues = vm.model.issues;
-    return Scaffold(
-      appBar: const REmptyHeader(),
-      backgroundColor: Colors.white,
-      body: ListView.builder(
-        controller: _scrollController,
-        itemCount: issues.length,
-        itemBuilder: (context, index) {
-          return index == issues.length - 1
-              ? const Center(child: RLoader())
-              : _IssueItem(issues[index]);
-        },
-      ),
+    return ListView.builder(
+      controller: _scrollController,
+      shrinkWrap: true,
+      itemCount: issues.length,
+      itemBuilder: (context, index) {
+        return index == issues.length - 1
+            ? const Center(child: MMLoader())
+            : _IssueItem(issues[index]);
+      },
     );
   }
 }

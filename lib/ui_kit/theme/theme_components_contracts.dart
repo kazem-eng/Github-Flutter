@@ -26,13 +26,11 @@ TextModel getTextsFromColors(ColorModel colors) {
   );
 }
 
-class RFonts {}
-
-ThemeData getThemeFromColors(ColorModel lodgifyColors) {
+ThemeData getThemeFromColors(ColorModel mmColors) {
   return ThemeData(
-    primaryColor: lodgifyColors.primary,
-    canvasColor: lodgifyColors.background,
-    scaffoldBackgroundColor: lodgifyColors.background,
+    primaryColor: mmColors.primary,
+    canvasColor: mmColors.background,
+    scaffoldBackgroundColor: mmColors.background,
     textSelectionTheme: TextSelectionThemeData(
       selectionColor: Colors.grey[300],
     ),

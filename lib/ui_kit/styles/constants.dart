@@ -8,4 +8,4 @@ const kSpace6 = 48.0;
 const kSpace7 = 56.0;
 const kSpace8 = 64.0;
 
-const kAppBarDefaultHeight = 80.0;
+const kHeaderDefaultHeight = 70.0;

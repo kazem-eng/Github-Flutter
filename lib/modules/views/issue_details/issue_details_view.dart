@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_issues_viewer/core/domain/base/base_mvvm/base_view.dart';
-import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_details/issue_details_viewmodel.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_details/issue_details_props.dart';
-import 'package:flutter_issues_viewer/ui_kit/components/m_components_export.dart';
-
-part '_widgets/_success.dart';
+import 'package:flutter_issues_viewer/ui_kit/components/mm_components_export.dart';
 
 class IssueDetailsView extends StatelessWidget {
   const IssueDetailsView({
@@ -19,11 +16,15 @@ class IssueDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const REmptyHeader(),
+      appBar: AppBar(
+        title: MMText.title(
+          'Flutter issues #${props.issue.number}',
+        ),
+      ),
       body: BaseView<IssueDetailsViewmodel>(
         initViewModel: (vm) => vm.initCalendar(props),
         builder: (context, vm, _) => vm.state.maybeWhen(
-          success: (data) => _Success(issue: data.issue),
+          success: (data) => MMText.title(data.issue.body),
           orElse: () => const SizedBox(),
         ),
       ),

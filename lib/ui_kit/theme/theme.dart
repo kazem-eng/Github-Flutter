@@ -3,8 +3,8 @@ import 'package:flutter_issues_viewer/ui_kit/styles/colors.dart';
 import 'package:flutter_issues_viewer/ui_kit/styles/texts.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme_components_contracts.dart';
 
-class RTheme extends InheritedWidget {
-  const RTheme({
+class MMTheme extends InheritedWidget {
+  const MMTheme({
     required this.color,
     required this.text,
     required this.theme,
@@ -16,7 +16,7 @@ class RTheme extends InheritedWidget {
   final TextModel text;
   final AppTheme theme;
 
-  static RTheme of(BuildContext context) =>
+  static MMTheme of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType()!;
 
   @override

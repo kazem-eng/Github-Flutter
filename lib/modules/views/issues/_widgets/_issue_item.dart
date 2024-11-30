@@ -24,7 +24,7 @@ class _IssueItem extends StatelessWidget {
           children: [
             Wrap(
               children: [
-                RText.title(issue.title),
+                MMText.title(issue.title),
                 if (issue.labels.isNotEmpty)
                   ...issue.labels.map(
                     (label) {
@@ -36,7 +36,7 @@ class _IssueItem extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(right: kSpace1),
                             child: Chip(
-                              label: RText.subtitle(
+                              label: MMText.subtitle(
                                 label.name,
                                 color: bgColor.computeLuminance() < .5
                                     ? Colors.white
@@ -52,7 +52,7 @@ class _IssueItem extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 5),
-            RText.subtitle(
+            MMText.subtitle(
               '#${issue.number} ${issue.state} by ${issue.user.login}',
               color: Colors.grey[600],
             ),

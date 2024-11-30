@@ -19,7 +19,7 @@ class ThemeComponentsProvider extends StatelessWidget {
     final colors = ColorModel.defaultColors();
     final text = getTextsFromColors(colors);
 
-    return RTheme(
+    return MMTheme(
       color: colors,
       text: text,
       theme: AppTheme.light,

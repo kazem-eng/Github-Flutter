@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_issues_viewer/ui_kit/styles/texts.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme.dart';
 
-class RText extends StatelessWidget {
-  const RText.title(
+class MMText extends StatelessWidget {
+  const MMText.title(
     this.text, {
     super.key,
     this.color,
@@ -18,7 +18,7 @@ class RText extends StatelessWidget {
     this.isSelectable = false,
   }) : styleType = TextStyleType.title;
 
-  const RText.subtitle(
+  const MMText.subtitle(
     this.text, {
     super.key,
     this.color,
@@ -33,7 +33,7 @@ class RText extends StatelessWidget {
     this.isSelectable = false,
   }) : styleType = TextStyleType.subtitle;
 
-  const RText.text(
+  const MMText.text(
     this.text, {
     super.key,
     this.color,
@@ -53,11 +53,11 @@ class RText extends StatelessWidget {
     TextStyle? getStyle() {
       switch (styleType) {
         case TextStyleType.title:
-          return RTheme.of(context).text.title;
+          return MMTheme.of(context).text.title;
         case TextStyleType.subtitle:
-          return RTheme.of(context).text.subtitle;
+          return MMTheme.of(context).text.subtitle;
         case TextStyleType.text:
-          return RTheme.of(context).text.title;
+          return MMTheme.of(context).text.title;
         default:
           return null;
       }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class RSvgPicture extends StatelessWidget {
-  const RSvgPicture.asset(
+enum AssetPackage { root, uiKit }
+
+class MMSvgPicture extends StatelessWidget {
+  const MMSvgPicture.asset(
     this.assetName, {
     super.key,
     this.width,
