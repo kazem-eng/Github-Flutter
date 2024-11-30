@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter_issues_viewer/core/domain/base/base.dart';
 import 'package:flutter_issues_viewer/modules/data/services/network/i_issues_network_service.dart';
 import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_details/issues_details_props.dart';
+import 'package:flutter_issues_viewer/modules/views/issue_details/issue_details_props.dart';
 import 'package:flutter_issues_viewer/modules/views/issues/issues_model.dart';
 import 'package:flutter_issues_viewer/navigation/navigator_controller.dart';
 import 'package:flutter_issues_viewer/navigation/routes.dart';

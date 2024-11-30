@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_issues_viewer/core/domain/base/base_mvvm/base_view.dart';
 import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_details/issue_details_viewmodel.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_details/issues_details_props.dart';
+import 'package:flutter_issues_viewer/modules/views/issue_details/issue_details_props.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/m_components_export.dart';
 
 part '_widgets/_success.dart';
 
-class IssuesDetailsView extends StatelessWidget {
-  const IssuesDetailsView({
+class IssueDetailsView extends StatelessWidget {
+  const IssueDetailsView({
     required this.props,
     super.key,
   });

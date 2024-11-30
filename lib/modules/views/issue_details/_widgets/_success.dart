@@ -1,4 +1,4 @@
-part of '../issues_details_view.dart';
+part of '../issue_details_view.dart';
 
 class _Success extends StatelessWidget {
   const _Success({

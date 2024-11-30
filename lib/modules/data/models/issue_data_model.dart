@@ -1,8 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'issue_data_model.g.dart';
-
-@JsonSerializable()
 class IssueDataModel {
   IssueDataModel({
     this.id,
@@ -33,8 +30,55 @@ class IssueDataModel {
     this.closedBy,
   });
 
-  factory IssueDataModel.fromJson(Map<String, dynamic> json) =>
-      _$IssueDataModelFromJson(json);
+  factory IssueDataModel.fromJson(Map<String, dynamic> json) {
+    final data = IssueDataModel(
+      id: json['id'] as int?,
+      nodeId: json['nodeId'] as String?,
+      url: json['url'] as String?,
+      repositoryUrl: json['repositoryUrl'] as String?,
+      labelsUrl: json['labelsUrl'] as String?,
+      commentsUrl: json['commentsUrl'] as String?,
+      eventsUrl: json['eventsUrl'] as String?,
+      htmlUrl: json['htmlUrl'] as String?,
+      number: json['number'] as int?,
+      state: json['state'] as String?,
+      stateReason: json['stateReason'] as String?,
+      title: json['title'] as String?,
+      body: json['body'] as String?,
+      user: json['user'] == null
+          ? null
+          : SimpleUserDataModel.fromJson(json['user'] as Map<String, dynamic>),
+      labels: json['labels']
+          ?.map<LabelDataModel>(
+            (e) => LabelDataModel.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+      assignee: json['assignee'] == null
+          ? null
+          : SimpleUserDataModel.fromJson(
+              json['assignee'] as Map<String, dynamic>,
+            ),
+      assignees: json['assignees']
+          ?.map<SimpleUserDataModel>(
+            (e) => SimpleUserDataModel.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+      locked: json['locked'] as bool?,
+      activeLockReason: json['activeLockReason'] as String?,
+      comments: json['comments'] as int?,
+      closedAt: json['closedAt'] as String?,
+      createdAt: json['createdAt'],
+      updatedAt: json['updatedAt'] as String?,
+      draft: json['draft'] as bool?,
+      closedBy: json['closedBy'] == null
+          ? null
+          : SimpleUserDataModel.fromJson(
+              json['closedBy'] as Map<String, dynamic>,
+            ),
+      authorAssociation: json['authorAssociation'] as String?,
+    );
+    return data;
+  }
 
   final int? id;
   final String? nodeId;
@@ -56,14 +100,12 @@ class IssueDataModel {
   final bool? locked;
   final String? activeLockReason;
   final int? comments;
-  final DateTime? closedAt;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final String? closedAt;
+  final String? createdAt;
+  final String? updatedAt;
   final bool? draft;
   final SimpleUserDataModel? closedBy;
   final String? authorAssociation;
-
-  Map<String, dynamic> toJson() => _$IssueDataModelToJson(this);
 }
 
 @JsonSerializable()
@@ -88,8 +130,27 @@ class SimpleUserDataModel {
     this.type,
   });
 
-  factory SimpleUserDataModel.fromJson(Map<String, dynamic> json) =>
-      _$SimpleUserDataModelFromJson(json);
+  factory SimpleUserDataModel.fromJson(Map<String, dynamic> json) {
+    return SimpleUserDataModel(
+      id: json['id'] as int?,
+      siteAdmin: json['siteAdmin'] as bool?,
+      login: json['login'] as String?,
+      nodeId: json['nodeId'] as String?,
+      avatarUrl: json['avatarUrl'] as String?,
+      url: json['url'] as String?,
+      htmlUrl: json['htmlUrl'] as String?,
+      followersUrl: json['followersUrl'] as String?,
+      followingUrl: json['followingUrl'] as String?,
+      gistsUrl: json['gistsUrl'] as String?,
+      starredUrl: json['starredUrl'] as String?,
+      subscriptionsUrl: json['subscriptionsUrl'] as String?,
+      organizationsUrl: json['organizationsUrl'] as String?,
+      reposUrl: json['reposUrl'] as String?,
+      eventsUrl: json['eventsUrl'] as String?,
+      receivedEventsUrl: json['receivedEventsUrl'] as String?,
+      type: json['type'] as String?,
+    );
+  }
 
   final String? login;
   final int? id;
@@ -108,12 +169,20 @@ class SimpleUserDataModel {
   final String? receivedEventsUrl;
   final String? type;
   final bool? siteAdmin;
-
-  Map<String, dynamic> toJson() => _$SimpleUserDataModelToJson(this);
 }
 
-@JsonSerializable()
 class LabelDataModel {
+  factory LabelDataModel.fromJson(Map<String, dynamic> json) {
+    return LabelDataModel(
+      id: json['id'] as int?,
+      nodeId: json['nodeId'] as String?,
+      url: json['url'] as String?,
+      name: json['name'] as String?,
+      description: json['description'] as String?,
+      color: json['color'] as String?,
+      defaultLabel: json['defaultLabel'] as bool?,
+    );
+  }
   LabelDataModel({
     this.id,
     this.defaultLabel,
@@ -124,9 +193,6 @@ class LabelDataModel {
     this.color,
   });
 
-  factory LabelDataModel.fromJson(Map<String, dynamic> json) =>
-      _$LabelDataModelFromJson(json);
-
   final int? id;
   final String? nodeId;
   final String? url;
@@ -134,6 +200,4 @@ class LabelDataModel {
   final String? description;
   final String? color;
   final bool? defaultLabel;
-
-  Map<String, dynamic> toJson() => _$LabelDataModelToJson(this);
 }

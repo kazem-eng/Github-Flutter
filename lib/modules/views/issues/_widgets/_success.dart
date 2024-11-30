@@ -40,6 +40,7 @@ class _SuccessState extends State<_Success> {
     final issues = vm.model.issues;
     return Scaffold(
       appBar: const REmptyHeader(),
+      backgroundColor: Colors.white,
       body: ListView.builder(
         controller: _scrollController,
         itemCount: issues.length,

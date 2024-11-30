@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_details/issues_details_props.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_details/issues_details_view.dart';
+import 'package:flutter_issues_viewer/modules/views/issue_details/issue_details_props.dart';
+import 'package:flutter_issues_viewer/modules/views/issue_details/issue_details_view.dart';
 import 'package:flutter_issues_viewer/modules/views/issues/issues_view.dart';
 import 'package:flutter_issues_viewer/navigation/routes.dart';
 
@@ -20,7 +20,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case Routes.issueDetail:
       final props = settings.arguments as IssueDetailsProps;
-      return _cupertino(IssuesDetailsView(props: props));
+      return _cupertino(IssueDetailsView(props: props));
 
     default:
       return _showUp(_NotFoundRoute(settings.name));

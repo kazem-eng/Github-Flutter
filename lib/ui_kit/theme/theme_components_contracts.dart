@@ -17,11 +17,11 @@ TextModel getTextsFromColors(ColorModel colors) {
     ),
     title: base.copyWith(
       fontSize: 14,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w600,
     ),
     subtitle: base.copyWith(
-      fontSize: 10,
-      fontWeight: FontWeight.w700,
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
     ),
   );
 }

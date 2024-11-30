@@ -32,7 +32,7 @@ class Issue {
 
   factory Issue.fromData(IssueDataModel issue) {
     const base = Issue();
-    return Issue(
+    final fromData = Issue(
       id: issue.id ?? base.id,
       nodeId: issue.nodeId ?? base.nodeId,
       url: issue.url ?? base.url,
@@ -59,15 +59,22 @@ class Issue {
       locked: issue.locked ?? base.locked,
       activeLockReason: issue.activeLockReason ?? base.activeLockReason,
       comments: issue.comments ?? base.comments,
-      closedAt: issue.closedAt ?? base.closedAt,
-      createdAt: issue.createdAt ?? base.createdAt,
-      updatedAt: issue.updatedAt ?? base.updatedAt,
+      closedAt: issue.closedAt != null
+          ? DateTime.tryParse(issue.closedAt!)
+          : base.closedAt,
+      createdAt: issue.createdAt != null
+          ? DateTime.parse(issue.createdAt!)
+          : base.createdAt,
+      updatedAt: issue.updatedAt != null
+          ? DateTime.tryParse(issue.updatedAt!)
+          : base.updatedAt,
       draft: issue.draft ?? base.draft,
       closedBy: issue.closedBy == null
           ? base.closedBy
           : SimpleUser.fromData(issue.closedBy!),
       authorAssociation: issue.authorAssociation ?? base.authorAssociation,
     );
+    return fromData;
   }
 
   final int id;
