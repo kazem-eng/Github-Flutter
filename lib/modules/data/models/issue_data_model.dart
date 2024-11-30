@@ -2,9 +2,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'issue_data_model.g.dart';
 
-@JsonSerializable(explicitToJson: true)
-class Issue {
-  Issue({
+@JsonSerializable()
+class IssueDataModel {
+  IssueDataModel({
     this.id,
     this.number,
     this.title,
@@ -33,7 +33,8 @@ class Issue {
     this.closedBy,
   });
 
-  factory Issue.fromJson(Map<String, dynamic> json) => _$IssueFromJson(json);
+  factory IssueDataModel.fromJson(Map<String, dynamic> json) =>
+      _$IssueDataModelFromJson(json);
 
   final int? id;
   final String? nodeId;
@@ -48,10 +49,10 @@ class Issue {
   final String? stateReason;
   final String? title;
   final String? body;
-  final SimpleUser? user;
-  final List<Label>? labels;
-  final SimpleUser? assignee;
-  final List<SimpleUser>? assignees;
+  final SimpleUserDataModel? user;
+  final List<LabelDataModel>? labels;
+  final SimpleUserDataModel? assignee;
+  final List<SimpleUserDataModel>? assignees;
   final bool? locked;
   final String? activeLockReason;
   final int? comments;
@@ -59,15 +60,15 @@ class Issue {
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final bool? draft;
-  final SimpleUser? closedBy;
+  final SimpleUserDataModel? closedBy;
   final String? authorAssociation;
 
-  Map<String, dynamic> toJson() => _$IssueToJson(this);
+  Map<String, dynamic> toJson() => _$IssueDataModelToJson(this);
 }
 
 @JsonSerializable()
-class SimpleUser {
-  SimpleUser({
+class SimpleUserDataModel {
+  SimpleUserDataModel({
     this.id,
     this.siteAdmin,
     this.login,
@@ -87,8 +88,8 @@ class SimpleUser {
     this.type,
   });
 
-  factory SimpleUser.fromJson(Map<String, dynamic> json) =>
-      _$SimpleUserFromJson(json);
+  factory SimpleUserDataModel.fromJson(Map<String, dynamic> json) =>
+      _$SimpleUserDataModelFromJson(json);
 
   final String? login;
   final int? id;
@@ -108,12 +109,12 @@ class SimpleUser {
   final String? type;
   final bool? siteAdmin;
 
-  Map<String, dynamic> toJson() => _$SimpleUserToJson(this);
+  Map<String, dynamic> toJson() => _$SimpleUserDataModelToJson(this);
 }
 
 @JsonSerializable()
-class Label {
-  Label({
+class LabelDataModel {
+  LabelDataModel({
     this.id,
     this.defaultLabel,
     this.nodeId,
@@ -123,7 +124,8 @@ class Label {
     this.color,
   });
 
-  factory Label.fromJson(Map<String, dynamic> json) => _$LabelFromJson(json);
+  factory LabelDataModel.fromJson(Map<String, dynamic> json) =>
+      _$LabelDataModelFromJson(json);
 
   final int? id;
   final String? nodeId;
@@ -133,5 +135,5 @@ class Label {
   final String? color;
   final bool? defaultLabel;
 
-  Map<String, dynamic> toJson() => _$LabelToJson(this);
+  Map<String, dynamic> toJson() => _$LabelDataModelToJson(this);
 }

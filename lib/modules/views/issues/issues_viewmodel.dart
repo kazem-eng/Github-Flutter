@@ -2,7 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter_issues_viewer/core/domain/base/base.dart';
 import 'package:flutter_issues_viewer/modules/data/services/network/i_issues_network_service.dart';
-import 'package:flutter_issues_viewer/modules/views/events/issues_model.dart';
+import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
+import 'package:flutter_issues_viewer/modules/views/issue_details/issues_details_props.dart';
+import 'package:flutter_issues_viewer/modules/views/issues/issues_model.dart';
+import 'package:flutter_issues_viewer/navigation/navigator_controller.dart';
+import 'package:flutter_issues_viewer/navigation/routes.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
@@ -12,6 +16,7 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
 
   // Injected services
   final _issuesNetworService = locator<IIssuesNetworkService>();
+  final _navigationService = locator<NavigatorController>();
 
   //state
   var _model = const IssuesModel();
@@ -47,5 +52,12 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
   void moreIssues() {
     _model = _model.copyWith(currentPage: _model.currentPage + 1);
     _fetchIssues();
+  }
+
+  void openIssueDetails(Issue issue) {
+    _navigationService.goTo(
+      Routes.issueDetail,
+      arguments: IssueDetailsProps(issue: issue),
+    );
   }
 }

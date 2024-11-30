@@ -6,54 +6,56 @@ part of 'issue_data_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Issue _$IssueFromJson(Map<String, dynamic> json) {
-  return Issue(
-    id: (json['id'] as num?)?.toInt(),
-    number: (json['number'] as num?)?.toInt(),
-    title: json['title'] as String?,
-    labels: (json['labels'] as List<dynamic>?)
-        ?.map((e) => Label.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    locked: json['locked'] as bool?,
-    comments: (json['comments'] as num?)?.toInt(),
-    createdAt: json['createdAt'] == null
-        ? null
-        : DateTime.parse(json['createdAt'] as String),
-    updatedAt: json['updatedAt'] == null
-        ? null
-        : DateTime.parse(json['updatedAt'] as String),
-    draft: json['draft'] as bool?,
-    nodeId: json['nodeId'] as String?,
-    url: json['url'] as String?,
-    repositoryUrl: json['repositoryUrl'] as String?,
-    labelsUrl: json['labelsUrl'] as String?,
-    commentsUrl: json['commentsUrl'] as String?,
-    eventsUrl: json['eventsUrl'] as String?,
-    htmlUrl: json['htmlUrl'] as String?,
-    state: json['state'] as String?,
-    authorAssociation: json['authorAssociation'] as String?,
-    stateReason: json['stateReason'] as String?,
-    body: json['body'] as String?,
-    user: json['user'] == null
-        ? null
-        : SimpleUser.fromJson(json['user'] as Map<String, dynamic>),
-    assignee: json['assignee'] == null
-        ? null
-        : SimpleUser.fromJson(json['assignee'] as Map<String, dynamic>),
-    assignees: (json['assignees'] as List<dynamic>?)
-        ?.map((e) => SimpleUser.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    activeLockReason: json['activeLockReason'] as String?,
-    closedAt: json['closedAt'] == null
-        ? null
-        : DateTime.parse(json['closedAt'] as String),
-    closedBy: json['closedBy'] == null
-        ? null
-        : SimpleUser.fromJson(json['closedBy'] as Map<String, dynamic>),
-  );
-}
+IssueDataModel _$IssueDataModelFromJson(Map<String, dynamic> json) =>
+    IssueDataModel(
+      id: (json['id'] as num?)?.toInt(),
+      number: (json['number'] as num?)?.toInt(),
+      title: json['title'] as String?,
+      labels: (json['labels'] as List<dynamic>?)
+          ?.map((e) => LabelDataModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      locked: json['locked'] as bool?,
+      comments: (json['comments'] as num?)?.toInt(),
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+      draft: json['draft'] as bool?,
+      nodeId: json['nodeId'] as String?,
+      url: json['url'] as String?,
+      repositoryUrl: json['repositoryUrl'] as String?,
+      labelsUrl: json['labelsUrl'] as String?,
+      commentsUrl: json['commentsUrl'] as String?,
+      eventsUrl: json['eventsUrl'] as String?,
+      htmlUrl: json['htmlUrl'] as String?,
+      state: json['state'] as String?,
+      authorAssociation: json['authorAssociation'] as String?,
+      stateReason: json['stateReason'] as String?,
+      body: json['body'] as String?,
+      user: json['user'] == null
+          ? null
+          : SimpleUserDataModel.fromJson(json['user'] as Map<String, dynamic>),
+      assignee: json['assignee'] == null
+          ? null
+          : SimpleUserDataModel.fromJson(
+              json['assignee'] as Map<String, dynamic>),
+      assignees: (json['assignees'] as List<dynamic>?)
+          ?.map((e) => SimpleUserDataModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      activeLockReason: json['activeLockReason'] as String?,
+      closedAt: json['closedAt'] == null
+          ? null
+          : DateTime.parse(json['closedAt'] as String),
+      closedBy: json['closedBy'] == null
+          ? null
+          : SimpleUserDataModel.fromJson(
+              json['closedBy'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$IssueToJson(Issue instance) => <String, dynamic>{
+Map<String, dynamic> _$IssueDataModelToJson(IssueDataModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'nodeId': instance.nodeId,
       'url': instance.url,
@@ -82,7 +84,8 @@ Map<String, dynamic> _$IssueToJson(Issue instance) => <String, dynamic>{
       'authorAssociation': instance.authorAssociation,
     };
 
-SimpleUser _$SimpleUserFromJson(Map<String, dynamic> json) => SimpleUser(
+SimpleUserDataModel _$SimpleUserDataModelFromJson(Map<String, dynamic> json) =>
+    SimpleUserDataModel(
       id: (json['id'] as num?)?.toInt(),
       siteAdmin: json['siteAdmin'] as bool?,
       login: json['login'] as String?,
@@ -102,7 +105,8 @@ SimpleUser _$SimpleUserFromJson(Map<String, dynamic> json) => SimpleUser(
       type: json['type'] as String?,
     );
 
-Map<String, dynamic> _$SimpleUserToJson(SimpleUser instance) =>
+Map<String, dynamic> _$SimpleUserDataModelToJson(
+        SimpleUserDataModel instance) =>
     <String, dynamic>{
       'login': instance.login,
       'id': instance.id,
@@ -123,7 +127,8 @@ Map<String, dynamic> _$SimpleUserToJson(SimpleUser instance) =>
       'siteAdmin': instance.siteAdmin,
     };
 
-Label _$LabelFromJson(Map<String, dynamic> json) => Label(
+LabelDataModel _$LabelDataModelFromJson(Map<String, dynamic> json) =>
+    LabelDataModel(
       id: (json['id'] as num?)?.toInt(),
       defaultLabel: json['defaultLabel'] as bool?,
       nodeId: json['nodeId'] as String?,
@@ -133,7 +138,8 @@ Label _$LabelFromJson(Map<String, dynamic> json) => Label(
       color: json['color'] as String?,
     );
 
-Map<String, dynamic> _$LabelToJson(Label instance) => <String, dynamic>{
+Map<String, dynamic> _$LabelDataModelToJson(LabelDataModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'nodeId': instance.nodeId,
       'url': instance.url,

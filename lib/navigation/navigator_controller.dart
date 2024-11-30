@@ -9,8 +9,10 @@ class NavigatorController {
     dynamic arguments,
     bool logRoute = true,
   }) {
-    return navigatorKey.currentState!
-        .pushNamed(routeName, arguments: arguments);
+    return navigatorKey.currentState!.pushNamed(
+      routeName,
+      arguments: arguments,
+    );
   }
 
   void goBack([dynamic arguments]) {

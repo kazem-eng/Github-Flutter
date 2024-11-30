@@ -9,6 +9,7 @@ import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
 import 'package:flutter_issues_viewer/modules/data/models/issue_data_model.dart';
 import 'package:flutter_issues_viewer/modules/data/services/network/i_issues_network_service.dart';
 import 'package:flutter_issues_viewer/modules/data/services/network/issues_endpoints.dart';
+import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 class IssuesNetworkService implements IIssuesNetworkService {
@@ -43,12 +44,15 @@ class IssuesNetworkService implements IIssuesNetworkService {
         log(response.toString());
 
         try {
-          final handledResponse = _returnResponse(response);
+          // Handle the response
+          final handledResponse = _handleResponse(response);
 
           // If the response is an error, return it
           if (handledResponse is BaseNetResponseError) {
             log(handledResponse.toString());
-            return BaseNetResponse.error(message: handledResponse.data.message);
+            return BaseNetResponse.error(
+              message: handledResponse.data.message,
+            );
           }
 
           // Parse the JSON data into a list of Issue objects
@@ -56,7 +60,9 @@ class IssuesNetworkService implements IIssuesNetworkService {
               ? <Issue>[]
               : handledResponse.data
                   .map<Issue>(
-                    (json) => Issue.fromJson(json as Map<String, dynamic>),
+                    (json) => Issue.fromData(
+                      IssueDataModel.fromJson(json as Map<String, dynamic>),
+                    ),
                   )
                   .toList();
 
@@ -92,7 +98,7 @@ class IssuesNetworkService implements IIssuesNetworkService {
     return path;
   }
 
-  BaseNetResponse _returnResponse(response) {
+  BaseNetResponse _handleResponse(response) {
     final body = json.decode(response.body);
     switch (response.statusCode) {
       case 200:
