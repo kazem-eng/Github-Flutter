@@ -3,7 +3,7 @@ import 'package:flutter_issues_viewer/ui_kit/styles/colors.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme_components_contracts.dart';
 
-class ThemeComponentsProvider extends StatelessWidget {
+class ThemeComponentsProvider extends StatefulWidget {
   const ThemeComponentsProvider({
     required this.builder,
     super.key,
@@ -15,15 +15,30 @@ class ThemeComponentsProvider extends StatelessWidget {
   ) builder;
 
   @override
+  State<ThemeComponentsProvider> createState() =>
+      _ThemeComponentsProviderState();
+}
+
+class _ThemeComponentsProviderState extends State<ThemeComponentsProvider> {
+  AppTheme _currentTheme = AppTheme.light;
+
+  void _switchTheme(AppTheme newTheme) {
+    setState(() {
+      _currentTheme = newTheme;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final colors = ColorModel.defaultColors();
-    final text = getTextsFromColors(colors);
+    final colors =
+        _currentTheme == AppTheme.light ? ColorModel.light : ColorModel.dark;
 
     return MMTheme(
       color: colors,
-      text: text,
-      theme: AppTheme.light,
-      child: builder(
+      text: getTextsFromColors(colors),
+      theme: _currentTheme,
+      switchTheme: _switchTheme,
+      child: widget.builder(
         context,
         getThemeFromColors(colors),
       ),

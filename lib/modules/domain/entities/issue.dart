@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_issues_viewer/modules/data/models/issue_data_model.dart';
 
 class Issue {
@@ -177,6 +179,7 @@ class Label {
     this.name = '',
     this.description = '',
     this.color = '',
+    this.isColorDark = false,
   });
 
   factory Label.fromData(LabelDataModel label) {
@@ -189,6 +192,7 @@ class Label {
       description: label.description ?? base.description,
       color: label.color ?? base.color,
       defaultLabel: label.defaultLabel ?? base.defaultLabel,
+      isColorDark: Label._isColorDark(label.color),
     );
   }
 
@@ -199,4 +203,16 @@ class Label {
   final String description;
   final String color;
   final bool defaultLabel;
+
+  // internal
+  final bool isColorDark;
+
+  static bool _isColorDark(String? color) {
+    if (color == null || color.isEmpty) {
+      return false;
+    }
+    final colors = Color(int.parse('0xFF$color'));
+    return (colors.red * 299 + colors.green * 587 + colors.blue * 114) / 1000 <
+        128;
+  }
 }

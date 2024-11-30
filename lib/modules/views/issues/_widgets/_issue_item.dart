@@ -8,12 +8,13 @@ class _IssueItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<IssuesViewmodel>();
+    final color = MMTheme.of(context).color;
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: color.background,
         border: Border(
-          bottom: BorderSide(color: Colors.grey[200]!),
+          bottom: BorderSide(color: color.primary, width: 0.15),
         ),
       ),
       child: ListTile(
@@ -38,9 +39,9 @@ class _IssueItem extends StatelessWidget {
                             child: Chip(
                               label: MMText.subtitle(
                                 label.name,
-                                color: bgColor.computeLuminance() < .5
-                                    ? Colors.white
-                                    : Colors.black,
+                                color: label.isColorDark
+                                    ? color.primary
+                                    : color.background,
                               ),
                               backgroundColor: bgColor,
                             ),

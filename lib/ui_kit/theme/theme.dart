@@ -8,6 +8,7 @@ class MMTheme extends InheritedWidget {
     required this.color,
     required this.text,
     required this.theme,
+    required this.switchTheme,
     required super.child,
     super.key,
   });
@@ -15,7 +16,7 @@ class MMTheme extends InheritedWidget {
   final ColorModel color;
   final TextModel text;
   final AppTheme theme;
-
+  final void Function(AppTheme newTheme) switchTheme;
   static MMTheme of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType()!;
 

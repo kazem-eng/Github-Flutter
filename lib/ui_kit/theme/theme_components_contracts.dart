@@ -14,14 +14,17 @@ TextModel getTextsFromColors(ColorModel colors) {
     text: base.copyWith(
       fontSize: 16,
       fontWeight: FontWeight.w400,
+      color: colors.text,
     ),
     title: base.copyWith(
       fontSize: 14,
       fontWeight: FontWeight.w600,
+      color: colors.text,
     ),
     subtitle: base.copyWith(
       fontSize: 12,
       fontWeight: FontWeight.w400,
+      color: colors.text,
     ),
   );
 }
@@ -31,8 +34,8 @@ ThemeData getThemeFromColors(ColorModel mmColors) {
     primaryColor: mmColors.primary,
     canvasColor: mmColors.background,
     scaffoldBackgroundColor: mmColors.background,
-    textSelectionTheme: TextSelectionThemeData(
-      selectionColor: Colors.grey[300],
+    appBarTheme: AppBarTheme(
+      backgroundColor: mmColors.appbar, // Set the AppBar background color
     ),
     useMaterial3: false,
   );
