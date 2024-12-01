@@ -48,4 +48,5 @@ jobs:
         firebase appdistribution:distribute \
           build/app/outputs/bundle/release/app-release.aab \
           --app 1:627150186670:android:4759a8ed8efae1c52fe53f \
-          --groups MediaMarket
+          --groups MediaMarket \
+          --token ${{ secrets.FIREBASE_AUTH_TOKEN }}
