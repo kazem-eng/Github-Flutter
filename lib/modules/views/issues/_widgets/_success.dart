@@ -43,7 +43,6 @@ class _SuccessState extends State<_Success> {
         onRefresh: vm.refresh,
         child: ListView.builder(
           controller: _scrollController,
-          shrinkWrap: true,
           itemCount: issues.length,
           itemBuilder: (context, index) {
             return index == issues.length - 1

@@ -5,15 +5,12 @@ class _StatusIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: 40,
+    return const CircleAvatar(
+      radius: 10,
+      backgroundColor: Colors.green,
       child: CircleAvatar(
-        radius: 10,
-        backgroundColor: Colors.green,
-        child: CircleAvatar(
-          radius: 3,
-          backgroundColor: Colors.white,
-        ),
+        radius: 3,
+        backgroundColor: Colors.white,
       ),
     );
   }
