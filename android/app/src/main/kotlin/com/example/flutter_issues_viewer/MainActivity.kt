@@ -1,4 +1,4 @@
-package com.example.flutter_issues_viewer
+package com.kazem.flutter_issues_viewer
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -27,6 +27,13 @@ jobs:
     - name: Install Dependencies
       run: flutter pub get
 
+    - name: Decode Android keystore
+      run: echo "${{ secrets.ANDROID_KEY_STORE }}" | base64 --decode > android/upload-keystore.jks
+
+    - name: Decode Android key properties
+      run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" | base64 --decode > android/key.properties
+
+
     - name: Install Firebase CLI
       run: |
         curl -sL https://firebase.tools | bash
@@ -47,6 +54,5 @@ jobs:
       run: |
         firebase appdistribution:distribute \
           build/app/outputs/bundle/release/app-release.aab \
-          --app 1:627150186670:android:4759a8ed8efae1c52fe53f \
+          --app 1:627150186670:android:757c064873880b212fe53f \
           --groups MediaMarket \
-          --token ${{ secrets.FIREBASE_AUTH_TOKEN }}
