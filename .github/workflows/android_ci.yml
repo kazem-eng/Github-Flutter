@@ -27,11 +27,11 @@ jobs:
     - name: Install Dependencies
       run: flutter pub get
 
-    - name: Decode Android keystore
-      run: echo "${{ secrets.ANDROID_KEY_STORE }}" | base64 --decode > android/upload-keystore.jks
+    # - name: Decode Android keystore
+    #   run: echo "${{ secrets.ANDROID_KEY_STORE }}" | base64 --decode > android/upload-keystore.jks
 
-    - name: Decode Android key properties
-      run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" | base64 --decode > android/key.properties
+    # - name: Decode Android key properties
+    #   run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" | base64 --decode > android/key.properties
 
 
     - name: Install Firebase CLI
