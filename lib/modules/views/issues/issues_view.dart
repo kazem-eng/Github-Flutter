@@ -2,52 +2,63 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_issues_viewer/core/domain/base/base.dart';
+import 'package:flutter_issues_viewer/core/domain/helpers/bottom_sheet_helper.dart';
+import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
 import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
+import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_Filter_view.dart';
+import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_props.dart';
+import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_props.dart';
+import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_view.dart';
 import 'package:flutter_issues_viewer/modules/views/issues/issues_viewmodel.dart';
+import 'package:flutter_issues_viewer/navigation/routes.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_components_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/styles/constants.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme_components_contracts.dart';
 
 part '_widgets/_issue_item.dart';
+part '_widgets/_issue_label.dart';
+part '_widgets/_status_icon.dart';
 part '_widgets/_success.dart';
+part '_widgets/_wrapper.dart';
 
 class IssuesView extends StatelessWidget {
   const IssuesView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final mmTheme = MMTheme.of(context);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: mmTheme.color.appbar,
-        elevation: 0,
-        title: const MMText.title('Flutter issues'),
-        actions: [
-          IconButton(
-            icon: Icon(
-              mmTheme.theme == AppTheme.light
-                  ? Icons.dark_mode
-                  : Icons.light_mode,
-            ),
-            onPressed: () {
-              mmTheme.switchTheme(
-                mmTheme.theme == AppTheme.light
-                    ? AppTheme.dark
-                    : AppTheme.light,
-              );
-            },
-          ),
-        ],
-      ),
-      body: BaseView<IssuesViewmodel>(
-        initViewModel: (vm) => vm.initCalendar(),
-        builder: (context, vm, _) => vm.state.maybeWhen(
-          loading: () => const MMLoader(),
-          success: (_) => const _Success(),
-          error: (_) => const MMErrorWidget(),
-          orElse: () => const SizedBox(),
-        ),
+    Future<IssuesFilterBy?> filterBottomSheet(
+      IssueFilterProps props,
+    ) async {
+      return await BottomSheetHelper.showBottomSheet(
+        context: context,
+        widget: IssueFilterView(props: props),
+        routeName: BottomSheetRoutes.issueFilter,
+      ) as IssuesFilterBy?;
+    }
+
+    Future<IssuesSortBy?> sortBottomSheet(
+      IssueSortProps props,
+    ) async {
+      return await BottomSheetHelper.showBottomSheet(
+        context: context,
+        widget: IssueSortView(props: props),
+        routeName: BottomSheetRoutes.issueSort,
+      ) as IssuesSortBy?;
+    }
+
+    return BaseView<IssuesViewmodel>(
+      initViewModel: (vm) {
+        vm.initCalendar(
+          filterBottomSheet: filterBottomSheet,
+          sortBottomSheet: sortBottomSheet,
+        );
+      },
+      builder: (context, vm, _) => vm.state.maybeWhen(
+        loading: () => const _Wrapper(child: MMLoader()),
+        success: (_) => const _Success(),
+        error: (_) => const _Wrapper(child: MMErrorWidget()),
+        orElse: () => const SizedBox(),
       ),
     );
   }

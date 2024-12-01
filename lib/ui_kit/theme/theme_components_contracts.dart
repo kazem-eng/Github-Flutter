@@ -35,7 +35,12 @@ ThemeData getThemeFromColors(ColorModel mmColors) {
     canvasColor: mmColors.background,
     scaffoldBackgroundColor: mmColors.background,
     appBarTheme: AppBarTheme(
-      backgroundColor: mmColors.appbar, // Set the AppBar background color
+      backgroundColor: mmColors.appbar,
+      elevation: 0,
+    ),
+    popupMenuTheme: PopupMenuThemeData(
+      color: mmColors.background,
+      shadowColor: mmColors.background,
     ),
     useMaterial3: false,
   );

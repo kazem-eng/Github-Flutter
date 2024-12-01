@@ -13,7 +13,7 @@ class IssueDetailsViewmodel
   IssueDetailsModel get model => _model;
 
   // Events
-  Future<void> initCalendar(IssueDetailsProps props) async {
+  Future<void> initVM(IssueDetailsProps props) async {
     _model = _model.copyWith(issue: props.issue);
     setState = BaseState.success(_model);
   }

@@ -38,15 +38,20 @@ class _SuccessState extends State<_Success> {
   Widget build(BuildContext context) {
     final vm = context.watch<IssuesViewmodel>();
     final issues = vm.model.issues;
-    return ListView.builder(
-      controller: _scrollController,
-      shrinkWrap: true,
-      itemCount: issues.length,
-      itemBuilder: (context, index) {
-        return index == issues.length - 1
-            ? const Center(child: MMLoader())
-            : _IssueItem(issues[index]);
-      },
+    return _Wrapper(
+      child: RefreshIndicator(
+        onRefresh: vm.refresh,
+        child: ListView.builder(
+          controller: _scrollController,
+          shrinkWrap: true,
+          itemCount: issues.length,
+          itemBuilder: (context, index) {
+            return index == issues.length - 1
+                ? const Center(child: MMLoader())
+                : _IssueItem(issues[index]);
+          },
+        ),
+      ),
     );
   }
 }

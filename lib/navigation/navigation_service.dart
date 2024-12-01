@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_issues_viewer/navigation/routes.dart';
 
-class NavigatorController {
+class NavigationService {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   Future<dynamic> goTo(

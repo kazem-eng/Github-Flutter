@@ -22,7 +22,7 @@ class IssueDetailsView extends StatelessWidget {
         ),
       ),
       body: BaseView<IssueDetailsViewmodel>(
-        initViewModel: (vm) => vm.initCalendar(props),
+        initViewModel: (vm) => vm.initVM(props),
         builder: (context, vm, _) => vm.state.maybeWhen(
           success: (data) => MMText.title(data.issue.body),
           orElse: () => const SizedBox(),

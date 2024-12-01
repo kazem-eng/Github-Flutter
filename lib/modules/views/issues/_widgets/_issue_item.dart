@@ -14,7 +14,10 @@ class _IssueItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.background,
         border: Border(
-          bottom: BorderSide(color: color.primary, width: 0.15),
+          bottom: BorderSide(
+            color: color.primary,
+            width: 0.15,
+          ),
         ),
       ),
       child: ListTile(
@@ -23,36 +26,9 @@ class _IssueItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Wrap(
-              children: [
-                MMText.title(issue.title),
-                if (issue.labels.isNotEmpty)
-                  ...issue.labels.map(
-                    (label) {
-                      final bgColor = Color(int.parse('0xFF${label.color}'));
-
-                      return SizedBox(
-                        height: 40,
-                        child: FittedBox(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: kSpace1),
-                            child: Chip(
-                              label: MMText.subtitle(
-                                label.name,
-                                color: label.isColorDark
-                                    ? color.primary
-                                    : color.background,
-                              ),
-                              backgroundColor: bgColor,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-              ],
-            ),
+            _IssueLabels(issue: issue),
             const SizedBox(height: 5),
+            // subtitle
             MMText.subtitle(
               '#${issue.number} ${issue.state} by ${issue.user.login}',
               color: Colors.grey[600],
@@ -60,20 +36,7 @@ class _IssueItem extends StatelessWidget {
           ],
         ),
         minVerticalPadding: 10,
-        leading: SizedBox(
-          width: 40,
-          child: Align(
-            child: CircleAvatar(
-              radius: 10,
-              backgroundImage: NetworkImage(issue.user.avatarUrl),
-              backgroundColor: Colors.green,
-              child: const CircleAvatar(
-                radius: 3,
-                backgroundColor: Colors.white,
-              ),
-            ),
-          ),
-        ),
+        leading: const _StatusIcon(),
       ),
     );
   }
