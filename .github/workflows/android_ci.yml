@@ -24,19 +24,17 @@ jobs:
       with:
         flutter-version: '3.24.5'
 
-    - name: Verify Flutter Installation
-      run: flutter doctor -v
-
     - name: Install Dependencies
       run: flutter pub get
 
+    - name: Authenticate with GCP
+      run: |
+        echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcloud-key.json
+        export GOOGLE_APPLICATION_CREDENTIALS="$HOME/gcloud-key.json"
+      
+
     - name: Build AppBundle
       run: flutter build appbundle --release
-
-    - name: Set up Firebase CLI
-      uses: w9jds/firebase-action@v2.2.0
-      with:
-        args: firebase setup:emulators:ui
 
     - name: Deploy AppBundle to Firebase App Distribution
       env:
