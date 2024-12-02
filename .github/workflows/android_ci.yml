@@ -33,30 +33,35 @@ jobs:
     - name: Decode Android key properties
       run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" | base64 --decode > android/key.properties
 
-    - name: Install Firebase CLI
-      run: |
-        curl -sL https://firebase.tools | bash
-        firebase --version
+    # - name: Install Firebase CLI
+    #   run: |
+    #     curl -sL https://firebase.tools | bash
+    #     firebase --version
   
-    - name: Authenticate with GCP
-      run: |
-        echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcloud-key.json
-        export GOOGLE_APPLICATION_CREDENTIALS="$HOME/gcloud-key.json"
+    # - name: Authenticate with GCP
+    #   run: |
+    #     echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcloud-key.json
+    #     export GOOGLE_APPLICATION_CREDENTIALS="$HOME/gcloud-key.json"
 
-    - name: Debug Firebase Auth Token
-      run: |
-        echo "Auth token length: ${#FIREBASE_AUTH_TOKEN}" && echo "Auth token starts with: ${FIREBASE_AUTH_TOKEN:0:10}"
-      env:
-        FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+    # - name: Debug Firebase Auth Token
+    #   run: |
+    #     echo "Auth token length: ${#FIREBASE_AUTH_TOKEN}" && echo "Auth token starts with: ${FIREBASE_AUTH_TOKEN:0:10}"
+    #   env:
+    #     FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
 
     - name: Build AppBundle
       run: flutter build appbundle --release
 
-    - name: Deploy AppBundle to Firebase App Distribution
-      env:
-        FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
-      run: |
-        firebase appdistribution:distribute \
-          build/app/outputs/bundle/release/app-release.aab \
-          --app 1:627150186670:android:757c064873880b212fe53f \
-          --groups MediaMarket \
+    - name: Upload generated aab to the artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: app-release.aab
+        path: build/app/outputs/bundle/release/app-release.aab
+
+    - name: Distribute apk to Firebase App Distribution
+      uses: wzieba/Firebase-Distribution-Github-Action@v1
+      with:
+        appId: ${{ secrets.FIREBASE_APP_ID }}
+        token: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+        groups: MediaMarket
+        file: build/app/outputs/bundle/release/app-release.aab
