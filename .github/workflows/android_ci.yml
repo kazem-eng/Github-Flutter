@@ -29,8 +29,8 @@ jobs:
       run: flutter pub get
     
     # Quality check
-    - name: Running Tests
-      run: flutter test --coverage
+    - name: Running analysis for linting issues
+      run: flutter analyze
 
     - name: Running Tests
       run: flutter test --coverage
