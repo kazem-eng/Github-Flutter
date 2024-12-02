@@ -3,13 +3,14 @@ name: Flutter Firebase Deployment
 on:
   push:
     branches:
-      - main # Deploy only on pushes to the main branch
+      - main 
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+    # Set up   
     - name: Checkout Repository
       uses: actions/checkout@v3
 
@@ -26,13 +27,22 @@ jobs:
 
     - name: Install Dependencies
       run: flutter pub get
+    
+    # Quality check
+    - name: Running Tests
+      run: flutter test --coverage
 
+    - name: Running Tests
+      run: flutter test --coverage
+    
+    # decode keystore and key properties
     - name: Decode Android keystore
       run: echo "${{ secrets.ANDROID_KEY_STORE }}" | base64 --decode > android/app/upload-keystore.jks
 
     - name: Decode Android key properties
       run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" | base64 --decode > android/key.properties
-
+    
+    # Build, upload and distribute apk
     - name: Build AppBundle
       run: flutter build apk --release
 

@@ -44,7 +44,6 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
       },
       error: (_, message) {
         log('Error fetching issues: $message');
-        // TODO Show proper error message
         setState = const BaseState.error();
       },
     );
@@ -60,9 +59,9 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
     await _fetchIssues();
   }
 
-  void moreIssues() {
+  Future<void> moreIssues() async {
     _model = _model.copyWith(currentPage: _model.currentPage + 1);
-    _fetchIssues();
+    await _fetchIssues();
   }
 
   void openIssueDetails(Issue issue) {

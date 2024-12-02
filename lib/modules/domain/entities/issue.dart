@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:flutter_issues_viewer/modules/data/models/issue_data_model.dart';
 
 class Issue {
@@ -105,6 +107,68 @@ class Issue {
   final bool draft;
   final SimpleUser closedBy;
   final String authorAssociation;
+
+  @override
+  bool operator ==(covariant Issue other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.nodeId == nodeId &&
+        other.url == url &&
+        other.repositoryUrl == repositoryUrl &&
+        other.labelsUrl == labelsUrl &&
+        other.commentsUrl == commentsUrl &&
+        other.eventsUrl == eventsUrl &&
+        other.htmlUrl == htmlUrl &&
+        other.number == number &&
+        other.state == state &&
+        other.stateReason == stateReason &&
+        other.title == title &&
+        other.body == body &&
+        other.user == user &&
+        listEquals(other.labels, labels) &&
+        other.assignee == assignee &&
+        listEquals(other.assignees, assignees) &&
+        other.locked == locked &&
+        other.activeLockReason == activeLockReason &&
+        other.comments == comments &&
+        other.closedAt == closedAt &&
+        other.createdAt == createdAt &&
+        other.updatedAt == updatedAt &&
+        other.draft == draft &&
+        other.closedBy == closedBy &&
+        other.authorAssociation == authorAssociation;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        nodeId.hashCode ^
+        url.hashCode ^
+        repositoryUrl.hashCode ^
+        labelsUrl.hashCode ^
+        commentsUrl.hashCode ^
+        eventsUrl.hashCode ^
+        htmlUrl.hashCode ^
+        number.hashCode ^
+        state.hashCode ^
+        stateReason.hashCode ^
+        title.hashCode ^
+        body.hashCode ^
+        user.hashCode ^
+        labels.hashCode ^
+        assignee.hashCode ^
+        assignees.hashCode ^
+        locked.hashCode ^
+        activeLockReason.hashCode ^
+        comments.hashCode ^
+        closedAt.hashCode ^
+        createdAt.hashCode ^
+        updatedAt.hashCode ^
+        draft.hashCode ^
+        closedBy.hashCode ^
+        authorAssociation.hashCode;
+  }
 }
 
 class SimpleUser {

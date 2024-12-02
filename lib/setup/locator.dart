@@ -30,3 +30,15 @@ void configureDependencies() {
 
   // ------------------------------------------------------------
 }
+
+void removeRegistrationIfExists<T extends Object>() {
+  if (locator.isRegistered<T>()) {
+    locator.unregister<T>();
+  }
+}
+
+void resetLazySingletonIfExists<T extends Object>() {
+  if (locator.isRegistered<T>()) {
+    locator.resetLazySingleton<T>();
+  }
+}
