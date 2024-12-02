@@ -33,9 +33,6 @@ jobs:
     - name: Decode Android key properties
       run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" | base64 --decode > android/key.properties
 
-    - name: Debug Key Properties Location
-      run: ls -l android/
-
     - name: Install Firebase CLI
       run: |
         curl -sL https://firebase.tools | bash
@@ -45,7 +42,15 @@ jobs:
       run: |
         echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcloud-key.json
         export GOOGLE_APPLICATION_CREDENTIALS="$HOME/gcloud-key.json"
-      
+
+    - name: Authenticate Firebase
+      run: firebase login:ci --no-localhost --token ${{ secrets.FIREBASE_AUTH_TOKEN }}  
+
+    - name: Debug Firebase Auth Token
+      run: |
+        echo "Auth token length: ${#FIREBASE_AUTH_TOKEN}" && echo "Auth token starts with: ${FIREBASE_AUTH_TOKEN:0:10}"
+      env:
+        FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
 
     - name: Build AppBundle
       run: flutter build appbundle --release
