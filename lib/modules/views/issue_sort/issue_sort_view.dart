@@ -20,7 +20,7 @@ class IssueSortView extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = MMTheme.of(context).color;
     return BottomSheetWrapper(
-      header: const BottomSheetHeader.onlyTitle(title: 'Filter'),
+      header: const BottomSheetHeader.onlyTitle(title: 'Sort'),
       body: BaseView<IssueSortViewmodel>(
         initViewModel: (vm) => vm.initVM(props),
         builder: (context, vm, _) => vm.state.maybeWhen(

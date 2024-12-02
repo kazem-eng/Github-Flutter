@@ -36,11 +36,17 @@ ThemeData getThemeFromColors(ColorModel mmColors) {
     scaffoldBackgroundColor: mmColors.background,
     appBarTheme: AppBarTheme(
       backgroundColor: mmColors.appbar,
-      elevation: 0,
+      elevation: 1,
+      shape: Border(
+        bottom: BorderSide(
+          color: mmColors.primary,
+          width: 0.1,
+        ),
+      ),
     ),
     popupMenuTheme: PopupMenuThemeData(
       color: mmColors.background,
-      shadowColor: mmColors.background,
+      shadowColor: mmColors.primary,
     ),
     useMaterial3: false,
   );

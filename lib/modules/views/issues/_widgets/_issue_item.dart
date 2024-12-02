@@ -26,6 +26,7 @@ class _IssueItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            MMText.title(issue.title),
             _IssueLabels(issue: issue),
             const SizedBox(height: 5),
             // subtitle

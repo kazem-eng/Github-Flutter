@@ -12,9 +12,6 @@ class _IssueLabels extends StatelessWidget {
     final color = MMTheme.of(context).color;
     return Wrap(
       children: [
-        // title
-        MMText.title(issue.title),
-
         // labels
         if (issue.labels.isNotEmpty)
           ...issue.labels.map(
@@ -22,7 +19,7 @@ class _IssueLabels extends StatelessWidget {
               final bgColor = Color(int.parse('0xFF${label.color}'));
 
               return SizedBox(
-                height: kSpace5,
+                height: kSpace4,
                 child: FittedBox(
                   child: Padding(
                     padding: const EdgeInsets.only(right: kSpace1),

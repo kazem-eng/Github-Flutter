@@ -180,10 +180,13 @@ class Label {
     this.description = '',
     this.color = '',
     this.isColorDark = false,
+    this.colorF,
   });
 
   factory Label.fromData(LabelDataModel label) {
     const base = Label();
+    final newColor = label.color ?? base.color;
+    final colorF = newColor.isEmpty ? null : Color(int.parse('0xFF$newColor'));
     return Label(
       id: label.id ?? base.id,
       nodeId: label.nodeId ?? base.nodeId,
@@ -192,7 +195,8 @@ class Label {
       description: label.description ?? base.description,
       color: label.color ?? base.color,
       defaultLabel: label.defaultLabel ?? base.defaultLabel,
-      isColorDark: Label._isColorDark(label.color),
+      isColorDark: Label._isColorDark(newColor, colorF),
+      colorF: colorF,
     );
   }
 
@@ -206,13 +210,13 @@ class Label {
 
   // internal
   final bool isColorDark;
+  final Color? colorF;
 
-  static bool _isColorDark(String? color) {
-    if (color == null || color.isEmpty) {
+  static bool _isColorDark(String color, Color? colorF) {
+    if (color.isEmpty || colorF == null) {
       return false;
     }
-    final colors = Color(int.parse('0xFF$color'));
-    return (colors.red * 299 + colors.green * 587 + colors.blue * 114) / 1000 <
+    return (colorF.red * 299 + colorF.green * 587 + colorF.blue * 114) / 1000 <
         128;
   }
 }

@@ -5,12 +5,17 @@ class _StatusIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CircleAvatar(
+    final colors = MMTheme.of(context).color;
+    return CircleAvatar(
       radius: 10,
-      backgroundColor: Colors.green,
+      backgroundColor: colors.status,
       child: CircleAvatar(
-        radius: 3,
-        backgroundColor: Colors.white,
+        radius: 8,
+        backgroundColor: colors.background,
+        child: CircleAvatar(
+          radius: 3,
+          backgroundColor: colors.status,
+        ),
       ),
     );
   }

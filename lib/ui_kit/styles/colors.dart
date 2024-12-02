@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 abstract class KColor {
-  static const blueDark = Color(0XFF171E31);
+  static const blueDark = Color(0XFF222326);
   static const blueLight = Color(0XFFE7F4F8);
   static const black = Color(0XFF000000);
   static const white = Color(0XFFFFFFFF);
-  static const lightGreen = Color(0XFFA5D6A7);
-  static const lightSemiLight = Color(0xFF90CAF9);
+  static const lightGrey = Color(0xFFDADADA);
+  static const darkGrey = Color(0xFF222326);
+  static const green = Color(0xFF00CA3D);
 }
 
 class ColorModel {
@@ -15,6 +16,7 @@ class ColorModel {
     required this.background,
     required this.secondary,
     required this.appbar,
+    required this.status,
     this.text = KColor.black,
   });
 
@@ -22,7 +24,8 @@ class ColorModel {
     primary: KColor.blueDark,
     background: KColor.white,
     secondary: KColor.blueLight,
-    appbar: KColor.lightGreen,
+    appbar: KColor.lightGrey,
+    status: KColor.green,
   );
 
   static const dark = ColorModel(
@@ -30,7 +33,8 @@ class ColorModel {
     background: KColor.blueDark,
     secondary: KColor.white,
     text: KColor.white,
-    appbar: KColor.lightSemiLight,
+    appbar: KColor.darkGrey,
+    status: KColor.green,
   );
 
   final Color primary;
@@ -38,4 +42,5 @@ class ColorModel {
   final Color secondary;
   final Color text;
   final Color appbar;
+  final Color status;
 }

@@ -36,8 +36,14 @@ class IssueFilterView extends StatelessWidget {
                 ),
                 onTap: () => vm.onFilterChanged(filter),
                 trailing: data.selectedFilter == filter
-                    ? const Icon(Icons.radio_button_checked)
-                    : const Icon(Icons.radio_button_unchecked),
+                    ? Icon(
+                        Icons.radio_button_checked,
+                        color: color.status,
+                      )
+                    : Icon(
+                        Icons.radio_button_unchecked,
+                        color: color.status,
+                      ),
               );
             },
           ),
