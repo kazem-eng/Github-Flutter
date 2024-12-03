@@ -27,28 +27,28 @@ class IssuesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<IssuesFilterBy?> filterBottomSheet(
-      IssueFilterProps props,
-    ) async {
-      return await BottomSheetHelper.showBottomSheet(
-        context: context,
-        widget: IssueFilterView(props: props),
-        routeName: BottomSheetRoutes.issueFilter,
-      ) as IssuesFilterBy?;
-    }
-
-    Future<IssuesSortBy?> sortBottomSheet(
-      IssueSortProps props,
-    ) async {
-      return await BottomSheetHelper.showBottomSheet(
-        context: context,
-        widget: IssueSortView(props: props),
-        routeName: BottomSheetRoutes.issueSort,
-      ) as IssuesSortBy?;
-    }
-
     return BaseView<IssuesViewmodel>(
       initViewModel: (vm) {
+        Future<IssuesFilterBy?> filterBottomSheet(
+          IssueFilterProps props,
+        ) async {
+          return await BottomSheetHelper.showBottomSheet(
+            context: context,
+            widget: IssueFilterView(props: props),
+            routeName: BottomSheetRoutes.issueFilter,
+          ) as IssuesFilterBy?;
+        }
+
+        Future<IssuesSortBy?> sortBottomSheet(
+          IssueSortProps props,
+        ) async {
+          return await BottomSheetHelper.showBottomSheet(
+            context: context,
+            widget: IssueSortView(props: props),
+            routeName: BottomSheetRoutes.issueSort,
+          ) as IssuesSortBy?;
+        }
+
         vm.initCalendar(
           filterBottomSheet: filterBottomSheet,
           sortBottomSheet: sortBottomSheet,

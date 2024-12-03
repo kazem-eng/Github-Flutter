@@ -4,8 +4,8 @@ import 'package:flutter_issues_viewer/ui_kit/components/bottom_sheet/bottom_shee
 import 'package:flutter_issues_viewer/ui_kit/components/bottom_sheet/bottom_sheet_keys.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_components_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_divider.dart';
-import 'package:flutter_issues_viewer/ui_kit/components/mm_svg_picture.dart';
 import 'package:flutter_issues_viewer/ui_kit/styles/constants.dart';
+import 'package:flutter_issues_viewer/ui_kit/theme/theme.dart';
 
 enum BottomSheetHeaderType {
   child,
@@ -16,7 +16,6 @@ class BottomSheetHeader extends StatelessWidget {
   const BottomSheetHeader({
     required this.child,
     this.onClose,
-    this.assetPackage = AssetPackage.uiKit,
     this.title,
     this.subtitle,
     this.showHandler = true,
@@ -26,7 +25,6 @@ class BottomSheetHeader extends StatelessWidget {
   const BottomSheetHeader.onlyTitle({
     required String this.title,
     this.onClose,
-    this.assetPackage = AssetPackage.uiKit,
     this.showHandler = true,
     super.key,
   })  : type = BottomSheetHeaderType.title,
@@ -38,11 +36,11 @@ class BottomSheetHeader extends StatelessWidget {
   final String? title;
   final String? subtitle;
   final BottomSheetHeaderType type;
-  final AssetPackage assetPackage;
   final bool showHandler;
 
   @override
   Widget build(BuildContext context) {
+    final color = MMTheme.of(context).color;
     Widget buildHeader() {
       Widget header;
       switch (type) {
@@ -67,6 +65,7 @@ class BottomSheetHeader extends StatelessWidget {
         width: kSpace6,
         height: kSpace6,
         child: CloseButton(
+          color: color.primary,
           onPressed: onClose ?? () => Navigator.pop(context),
         ),
       );
@@ -95,7 +94,11 @@ class BottomSheetHeader extends StatelessWidget {
         if (showHandler) const Center(child: BottomSheetHandle()),
         const SizedBox(height: kSpace1),
         buildBody(),
-        MMDivider.horizontal(),
+        const SizedBox(height: kSpace1),
+        MMDivider.horizontal(
+          height: .2,
+          color: color.primary,
+        ),
       ],
     );
   }

@@ -8,6 +8,7 @@ abstract class KColor {
   static const lightGrey = Color(0xFFDADADA);
   static const darkGrey = Color(0xFF222326);
   static const green = Color(0xFF00CA3D);
+  static const blue = Color(0xFF4389CF);
 }
 
 class ColorModel {
@@ -23,7 +24,7 @@ class ColorModel {
   static const light = ColorModel(
     primary: KColor.blueDark,
     background: KColor.white,
-    secondary: KColor.blueLight,
+    secondary: KColor.blue,
     appbar: KColor.lightGrey,
     status: KColor.green,
   );
@@ -31,7 +32,7 @@ class ColorModel {
   static const dark = ColorModel(
     primary: KColor.blueLight,
     background: KColor.blueDark,
-    secondary: KColor.white,
+    secondary: KColor.blue,
     text: KColor.white,
     appbar: KColor.darkGrey,
     status: KColor.green,

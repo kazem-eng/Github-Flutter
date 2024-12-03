@@ -5,8 +5,7 @@ import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_props.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_viewmodel.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/bottom_sheet/bottom_sheet_export.dart';
-import 'package:flutter_issues_viewer/ui_kit/components/mm_text.dart';
-import 'package:flutter_issues_viewer/ui_kit/theme/theme.dart';
+import 'package:flutter_issues_viewer/ui_kit/components/mm_radio_item.dart';
 
 class IssueFilterView extends StatelessWidget {
   const IssueFilterView({
@@ -18,7 +17,6 @@ class IssueFilterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = MMTheme.of(context).color;
     return BottomSheetWrapper(
       header: const BottomSheetHeader.onlyTitle(title: 'Filter'),
       body: BaseView<IssueFilterViewmodel>(
@@ -29,21 +27,10 @@ class IssueFilterView extends StatelessWidget {
             itemCount: IssuesFilterBy.values.length,
             itemBuilder: (context, index) {
               final filter = IssuesFilterBy.values[index];
-              return ListTile(
-                title: MMText.title(
-                  filter.name,
-                  color: color.primary,
-                ),
+              return MMRadioItem(
+                text: filter.name,
+                isSelected: filter == data.selectedFilter,
                 onTap: () => vm.onFilterChanged(filter),
-                trailing: data.selectedFilter == filter
-                    ? Icon(
-                        Icons.radio_button_checked,
-                        color: color.status,
-                      )
-                    : Icon(
-                        Icons.radio_button_unchecked,
-                        color: color.status,
-                      ),
               );
             },
           ),

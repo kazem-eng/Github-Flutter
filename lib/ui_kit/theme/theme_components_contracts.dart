@@ -37,6 +37,9 @@ ThemeData getThemeFromColors(ColorModel mmColors) {
     appBarTheme: AppBarTheme(
       backgroundColor: mmColors.appbar,
       elevation: 1,
+      iconTheme: IconThemeData(
+        color: mmColors.primary,
+      ),
       shape: Border(
         bottom: BorderSide(
           color: mmColors.primary,

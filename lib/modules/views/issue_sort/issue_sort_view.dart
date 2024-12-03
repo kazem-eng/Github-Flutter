@@ -5,8 +5,7 @@ import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_props.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_viewmodel.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/bottom_sheet/bottom_sheet_export.dart';
-import 'package:flutter_issues_viewer/ui_kit/components/mm_components_export.dart';
-import 'package:flutter_issues_viewer/ui_kit/theme/theme.dart';
+import 'package:flutter_issues_viewer/ui_kit/components/mm_radio_item.dart';
 
 class IssueSortView extends StatelessWidget {
   const IssueSortView({
@@ -18,7 +17,6 @@ class IssueSortView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = MMTheme.of(context).color;
     return BottomSheetWrapper(
       header: const BottomSheetHeader.onlyTitle(title: 'Sort'),
       body: BaseView<IssueSortViewmodel>(
@@ -29,15 +27,10 @@ class IssueSortView extends StatelessWidget {
             itemCount: IssuesSortBy.values.length,
             itemBuilder: (context, index) {
               final sort = IssuesSortBy.values[index];
-              return ListTile(
-                title: MMText.title(
-                  sort.name,
-                  color: color.primary,
-                ),
+              return MMRadioItem(
+                text: sort.name,
+                isSelected: data.selectedSort == sort,
                 onTap: () => vm.onSortChanged(sort),
-                trailing: data.selectedSort == sort
-                    ? const Icon(Icons.radio_button_checked)
-                    : const Icon(Icons.radio_button_unchecked),
               );
             },
           ),
