@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 
 import 'package:flutter_issues_viewer/core/domain/base/base.dart';
 import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
-import 'package:flutter_issues_viewer/modules/data/services/network/i_issues_network_service.dart';
+import 'package:flutter_issues_viewer/modules/data/services/services_export.dart';
 import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_props.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_props.dart';
@@ -20,11 +20,15 @@ void main() {
   setUp(() {
     getAndRegisterIssuesNetworkService();
     getAndRegisterNavigationService();
+    getAndRegisterISharedPreferencesService();
+    getAndRegisterILocalStorageService();
   });
 
   tearDown(() {
     removeRegistrationIfExists<NavigationService>();
     removeRegistrationIfExists<IIssuesNetworkService>();
+    removeRegistrationIfExists<ISharedPreferencesService>();
+    removeRegistrationIfExists<ILocalStorageService>();
   });
 
   group('IssuesViewmodel -', () {
@@ -59,6 +63,7 @@ void main() {
       await viewModel.initCalendar(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: (IssueSortProps _) => Future.value(),
+        themeInitializer: ({required isDark}) {},
       );
 
       // assert
@@ -106,6 +111,7 @@ void main() {
       await viewModel.initCalendar(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: sortMock.sortIssues,
+        themeInitializer: ({required isDark}) {},
       );
       // assert
       expect(viewModel.model.sortBy, IssuesSortBy.created); // default sort
@@ -144,6 +150,7 @@ void main() {
         sortBottomSheet: (IssueSortProps props) {
           return Future.value();
         },
+        themeInitializer: ({required isDark}) {},
       );
       // assert
       expect(
@@ -179,6 +186,7 @@ void main() {
       await viewModel.initCalendar(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: (IssueSortProps _) => Future.value(),
+        themeInitializer: ({required isDark}) {},
       );
 
       getAndRegisterIssuesNetworkService(

@@ -8,7 +8,7 @@ class _Success extends StatefulWidget {
 }
 
 class _SuccessState extends State<_Success> {
-  final ScrollController _scrollController = ScrollController();
+  final _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _SuccessState extends State<_Success> {
           itemBuilder: (context, index) {
             return index == issues.length - 1
                 ? const Center(child: MMLoader())
-                : _IssueItem(issues[index]);
+                : _IssueItem(index);
           },
         ),
       ),

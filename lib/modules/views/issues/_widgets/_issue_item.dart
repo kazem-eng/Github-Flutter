@@ -1,14 +1,16 @@
 part of '../issues_view.dart';
 
 class _IssueItem extends StatelessWidget {
-  const _IssueItem(this.issue);
+  const _IssueItem(this.issueIndex);
 
-  final Issue issue;
+  final int issueIndex;
 
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<IssuesViewmodel>();
     final color = MMTheme.of(context).color;
+    final issue = vm.model.issues[issueIndex];
+    final viewed = issue.isViewed ? 'viewed  \uD83D\uDC40 |' : '';
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -21,7 +23,7 @@ class _IssueItem extends StatelessWidget {
         ),
       ),
       child: ListTile(
-        onTap: () => vm.openIssueDetails(issue),
+        onTap: () => vm.openIssueDetails(issueIndex),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -29,9 +31,8 @@ class _IssueItem extends StatelessWidget {
             MMText.title(issue.title),
             _IssueLabels(issue: issue),
             const SizedBox(height: 5),
-            // subtitle
             MMText.subtitle(
-              '#${issue.number} ${issue.state} by ${issue.user.login}',
+              '$viewed #${issue.number} ${issue.state} by ${issue.user.login}',
               color: Colors.grey[600],
             ),
           ],

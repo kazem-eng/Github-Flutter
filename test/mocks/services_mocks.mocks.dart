@@ -10,6 +10,10 @@ import 'package:flutter_issues_viewer/core/domain/base/base_net_response/base_ne
     as _i3;
 import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart'
     as _i8;
+import 'package:flutter_issues_viewer/modules/data/services/local_storage_service/local_core_storage_service.dart'
+    as _i9;
+import 'package:flutter_issues_viewer/modules/data/services/local_storage_service/shared_preferences_service.dart'
+    as _i10;
 import 'package:flutter_issues_viewer/modules/data/services/network/i_issues_network_service.dart'
     as _i6;
 import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart'
@@ -173,4 +177,113 @@ class MockIIssuesNetworkService extends _i2.Mock
           ),
         )),
       ) as _i5.Future<_i3.BaseNetResponse<List<_i7.Issue>>>);
+}
+
+/// A class which mocks [ILocalStorageService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockILocalStorageService extends _i2.Mock
+    implements _i9.ILocalStorageService {
+  @override
+  bool isDarkTheme() => (super.noSuchMethod(
+        Invocation.method(
+          #isDarkTheme,
+          [],
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  _i5.Future<bool> setIsDarkTheme({required bool? isDarkTheme}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setIsDarkTheme,
+          [],
+          {#isDarkTheme: isDarkTheme},
+        ),
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
+
+  @override
+  List<String> getViewedIssues() => (super.noSuchMethod(
+        Invocation.method(
+          #getViewedIssues,
+          [],
+        ),
+        returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
+      ) as List<String>);
+
+  @override
+  _i5.Future<bool> setViewedIssues(List<String>? issueIds) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setViewedIssues,
+          [issueIds],
+        ),
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
+}
+
+/// A class which mocks [ISharedPreferencesService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockISharedPreferencesService extends _i2.Mock
+    implements _i10.ISharedPreferencesService {
+  @override
+  _i5.Future<bool> setStringList({
+    required String? key,
+    required List<String>? value,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setStringList,
+          [],
+          {
+            #key: key,
+            #value: value,
+          },
+        ),
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
+
+  @override
+  List<String>? getStringList(String? key) => (super.noSuchMethod(
+        Invocation.method(
+          #getStringList,
+          [key],
+        ),
+        returnValueForMissingStub: null,
+      ) as List<String>?);
+
+  @override
+  bool? getBool(String? key) => (super.noSuchMethod(
+        Invocation.method(
+          #getBool,
+          [key],
+        ),
+        returnValueForMissingStub: null,
+      ) as bool?);
+
+  @override
+  _i5.Future<bool> setBool({
+    required String? key,
+    required bool? value,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setBool,
+          [],
+          {
+            #key: key,
+            #value: value,
+          },
+        ),
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 }

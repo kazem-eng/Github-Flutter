@@ -22,38 +22,50 @@ part '_widgets/_status_icon.dart';
 part '_widgets/_success.dart';
 part '_widgets/_wrapper.dart';
 
-class IssuesView extends StatelessWidget {
+class IssuesView extends StatefulWidget {
   const IssuesView({super.key});
+
+  @override
+  State<IssuesView> createState() => _IssuesViewState();
+}
+
+class _IssuesViewState extends State<IssuesView> {
+  void themeInitializer({required bool isDark}) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      MMTheme.of(context).switchTheme(
+        isDark ? AppTheme.light : AppTheme.dark,
+      );
+    });
+  }
+
+  Future<IssuesFilterBy?> filterBottomSheet(
+    IssueFilterProps props,
+  ) async {
+    return await BottomSheetHelper.showBottomSheet(
+      context: context,
+      widget: IssueFilterView(props: props),
+      routeName: BottomSheetRoutes.issueFilter,
+    ) as IssuesFilterBy?;
+  }
+
+  Future<IssuesSortBy?> sortBottomSheet(
+    IssueSortProps props,
+  ) async {
+    return await BottomSheetHelper.showBottomSheet(
+      context: context,
+      widget: IssueSortView(props: props),
+      routeName: BottomSheetRoutes.issueSort,
+    ) as IssuesSortBy?;
+  }
 
   @override
   Widget build(BuildContext context) {
     return BaseView<IssuesViewmodel>(
-      initViewModel: (vm) {
-        Future<IssuesFilterBy?> filterBottomSheet(
-          IssueFilterProps props,
-        ) async {
-          return await BottomSheetHelper.showBottomSheet(
-            context: context,
-            widget: IssueFilterView(props: props),
-            routeName: BottomSheetRoutes.issueFilter,
-          ) as IssuesFilterBy?;
-        }
-
-        Future<IssuesSortBy?> sortBottomSheet(
-          IssueSortProps props,
-        ) async {
-          return await BottomSheetHelper.showBottomSheet(
-            context: context,
-            widget: IssueSortView(props: props),
-            routeName: BottomSheetRoutes.issueSort,
-          ) as IssuesSortBy?;
-        }
-
-        vm.initCalendar(
-          filterBottomSheet: filterBottomSheet,
-          sortBottomSheet: sortBottomSheet,
-        );
-      },
+      initViewModel: (vm) => vm.initCalendar(
+        filterBottomSheet: filterBottomSheet,
+        sortBottomSheet: sortBottomSheet,
+        themeInitializer: themeInitializer,
+      ),
       builder: (context, vm, _) => vm.state.maybeWhen(
         loading: () => const _Wrapper(child: MMLoader()),
         success: (_) => const _Success(),

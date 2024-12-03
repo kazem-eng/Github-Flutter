@@ -12,6 +12,7 @@ abstract class KColor {
   static const greyShade1 = Color(0xFFF5F5F5);
   static const greyShade2 = Color(0xFFE0E0E0);
   static const greyShade8 = Color(0xFF424242);
+  static const greyShade6 = Color(0xFF757575);
 }
 
 class ColorModel {
@@ -23,10 +24,12 @@ class ColorModel {
     required this.status,
     required this.gap,
     required this.contentBg,
-    this.text = KColor.black,
+    required this.text,
+    required this.subtitle,
   });
 
   static const light = ColorModel(
+    text: KColor.black,
     primary: KColor.blueDark,
     background: KColor.white,
     secondary: KColor.blue,
@@ -34,6 +37,7 @@ class ColorModel {
     status: KColor.green,
     gap: KColor.greyShade2,
     contentBg: KColor.greyShade1,
+    subtitle: KColor.greyShade6,
   );
 
   static const dark = ColorModel(
@@ -45,12 +49,14 @@ class ColorModel {
     status: KColor.green,
     gap: KColor.greyShade8,
     contentBg: KColor.greyShade8,
+    subtitle: KColor.greyShade6,
   );
 
   final Color primary;
   final Color background;
   final Color secondary;
   final Color text;
+  final Color subtitle;
   final Color appbar;
   final Color status;
   final Color gap;

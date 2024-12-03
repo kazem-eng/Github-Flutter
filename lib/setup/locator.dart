@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_issues_viewer/core/domain/services/network_service.dart/network_export.dart';
+import 'package:flutter_issues_viewer/modules/data/services/local_storage_service/local_core_storage_export.dart';
 import 'package:flutter_issues_viewer/modules/data/services/network/issues_network_export.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_details/issue_details_viewmodel.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_viewmodel.dart';
@@ -10,12 +12,16 @@ import 'package:flutter_issues_viewer/navigation/navigation_service.dart';
 
 final locator = GetIt.instance;
 
-void configureDependencies() {
+Future<void> configureDependencies() async {
+  final sharedPreferences = await SharedPreferences.getInstance();
   locator
     // Core services
     ..registerLazySingleton(() => NavigationService())
     ..registerSingleton<INetworkService>(NetworkService())
-
+    ..registerLazySingleton<ISharedPreferencesService>(
+      () => SharedPreferencesService(preferences: sharedPreferences),
+    )
+    ..registerLazySingleton<ILocalStorageService>(() => LocalStorageService())
     // ------------------------------------------------------------
 
     // Issues module

@@ -1,8 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter_issues_viewer/core/domain/base/base.dart';
-import 'package:flutter_issues_viewer/modules/data/services/network/i_issues_network_service.dart';
-import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
+import 'package:flutter_issues_viewer/modules/data/services/services_export.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_details/issue_details_props.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_callback.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_props.dart';
@@ -21,8 +20,11 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
   // Injected services
   final _issuesNetworService = locator<IIssuesNetworkService>();
   final _navigationService = locator<NavigationService>();
+  final _localStorageService = locator<ILocalStorageService>();
+
   late final IssueFilterCallback _filterBottomSheet;
   late final IssueSortCallback _sortBottomSheet;
+  late final void Function({required bool isDark}) _themeInitializer;
 
   //state
   var _model = const IssuesModel();
@@ -39,7 +41,16 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
     response.when(
       success: (data) {
         log(data.toString());
-        _model = _model.copyWith(issues: [..._model.issues, ...data]);
+        final updatedData = data.map((e) {
+          final viewed = _model.viewedIssueIds.contains(e.id.toString());
+          return e.copyWith(isViewed: viewed);
+        }).toList();
+        _model = _model.copyWith(
+          issues: [
+            ..._model.issues,
+            ...updatedData,
+          ],
+        );
         setState = BaseState.success(_model);
       },
       error: (_, message) {
@@ -49,13 +60,36 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
     );
   }
 
+  Future<void> _getStorageData() async {
+    final viewedIssues = _localStorageService.getViewedIssues();
+    final isDarkTheme = _localStorageService.isDarkTheme();
+    _themeInitializer(isDark: isDarkTheme);
+    _model = _model.copyWith(
+      viewedIssueIds: viewedIssues,
+      isDarkTheme: isDarkTheme,
+    );
+    notifyListeners();
+  }
+
+  void _addViewedIssue({required int index}) {
+    _model.issues[index] = _model.issues[index].copyWith(isViewed: true);
+    final viewedIssues = [..._model.viewedIssueIds];
+    viewedIssues.add(_model.issues[index].id.toString());
+    _model = _model.copyWith(viewedIssueIds: viewedIssues);
+    _localStorageService.setViewedIssues(viewedIssues);
+    notifyListeners();
+  }
+
   // Events
   Future<void> initCalendar({
     required IssueFilterCallback filterBottomSheet,
     required IssueSortCallback sortBottomSheet,
+    required void Function({required bool isDark}) themeInitializer,
   }) async {
     _filterBottomSheet = filterBottomSheet;
     _sortBottomSheet = sortBottomSheet;
+    _themeInitializer = themeInitializer;
+    await _getStorageData();
     await _fetchIssues();
   }
 
@@ -64,10 +98,11 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
     await _fetchIssues();
   }
 
-  void openIssueDetails(Issue issue) {
+  void openIssueDetails(int index) {
+    _addViewedIssue(index: index);
     _navigationService.goTo(
       Routes.issueDetail,
-      arguments: IssueDetailsProps(issue: issue),
+      arguments: IssueDetailsProps(issue: _model.issues[index]),
     );
   }
 
@@ -97,5 +132,13 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
     setState = const BaseState.loading();
     _model = _model.copyWith(currentPage: 1, issues: []);
     await _fetchIssues();
+  }
+
+  void switchTheme() {
+    final revertedTheme = !_model.isDarkTheme;
+    _themeInitializer(isDark: revertedTheme);
+    _localStorageService.setIsDarkTheme(isDarkTheme: revertedTheme);
+    _model = _model.copyWith(isDarkTheme: revertedTheme);
+    notifyListeners();
   }
 }

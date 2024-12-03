@@ -7,10 +7,10 @@ class _Wrapper extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
+    final vm = context.watch<IssuesViewmodel>();
     final theme = MMTheme.of(context);
     final themeColor = MMTheme.of(context).color;
     final isDark = theme.theme == AppTheme.dark;
-    final vm = context.watch<IssuesViewmodel>();
 
     Widget themeSwitcherIcon() {
       return IconButton(
@@ -19,9 +19,9 @@ class _Wrapper extends StatelessWidget {
           color: themeColor.primary,
         ),
         onPressed: () {
-          theme.switchTheme(
-            isDark ? AppTheme.light : AppTheme.dark,
-          );
+          // final newTheme = isDark ? AppTheme.light : AppTheme.dark;
+          vm.switchTheme();
+          // theme.switchTheme(newTheme);
         },
       );
     }

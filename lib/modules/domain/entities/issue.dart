@@ -32,6 +32,7 @@ class Issue {
     this.activeLockReason = '',
     this.closedAt,
     this.closedBy = const SimpleUser(),
+    this.isViewed = false,
   });
 
   factory Issue.fromData(IssueDataModel issue) {
@@ -108,6 +109,8 @@ class Issue {
   final SimpleUser closedBy;
   final String authorAssociation;
 
+  // internal
+  final bool isViewed;
   @override
   bool operator ==(covariant Issue other) {
     if (identical(this, other)) return true;
@@ -137,7 +140,8 @@ class Issue {
         other.updatedAt == updatedAt &&
         other.draft == draft &&
         other.closedBy == closedBy &&
-        other.authorAssociation == authorAssociation;
+        other.authorAssociation == authorAssociation &&
+        other.isViewed == isViewed;
   }
 
   @override
@@ -167,7 +171,73 @@ class Issue {
         updatedAt.hashCode ^
         draft.hashCode ^
         closedBy.hashCode ^
-        authorAssociation.hashCode;
+        authorAssociation.hashCode ^
+        isViewed.hashCode;
+  }
+
+  Issue copyWith({
+    int? id,
+    String? nodeId,
+    String? url,
+    String? repositoryUrl,
+    String? labelsUrl,
+    String? commentsUrl,
+    String? eventsUrl,
+    String? htmlUrl,
+    int? number,
+    String? state,
+    String? stateReason,
+    String? title,
+    String? body,
+    SimpleUser? user,
+    List<Label>? labels,
+    SimpleUser? assignee,
+    List<SimpleUser>? assignees,
+    bool? locked,
+    String? activeLockReason,
+    int? comments,
+    DateTime? closedAt,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    bool? draft,
+    SimpleUser? closedBy,
+    String? authorAssociation,
+    bool? isViewed,
+  }) {
+    return Issue(
+      id: id ?? this.id,
+      nodeId: nodeId ?? this.nodeId,
+      url: url ?? this.url,
+      repositoryUrl: repositoryUrl ?? this.repositoryUrl,
+      labelsUrl: labelsUrl ?? this.labelsUrl,
+      commentsUrl: commentsUrl ?? this.commentsUrl,
+      eventsUrl: eventsUrl ?? this.eventsUrl,
+      htmlUrl: htmlUrl ?? this.htmlUrl,
+      number: number ?? this.number,
+      state: state ?? this.state,
+      stateReason: stateReason ?? this.stateReason,
+      title: title ?? this.title,
+      body: body ?? this.body,
+      user: user ?? this.user,
+      labels: labels ?? this.labels,
+      assignee: assignee ?? this.assignee,
+      assignees: assignees ?? this.assignees,
+      locked: locked ?? this.locked,
+      activeLockReason: activeLockReason ?? this.activeLockReason,
+      comments: comments ?? this.comments,
+      closedAt: closedAt ?? this.closedAt,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      draft: draft ?? this.draft,
+      closedBy: closedBy ?? this.closedBy,
+      authorAssociation: authorAssociation ?? this.authorAssociation,
+      isViewed: isViewed ?? this.isViewed,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'Issue(id: $id, nodeId: $nodeId, url: $url, repositoryUrl: $repositoryUrl, labelsUrl: $labelsUrl, commentsUrl: $commentsUrl, eventsUrl: $eventsUrl, htmlUrl: $htmlUrl, number: $number, state: $state, stateReason: $stateReason, title: $title, body: $body, user: $user, labels: $labels, assignee: $assignee, assignees: $assignees, locked: $locked, activeLockReason: $activeLockReason, comments: $comments, closedAt: $closedAt, createdAt: $createdAt, updatedAt: $updatedAt, draft: $draft, closedBy: $closedBy, authorAssociation: $authorAssociation, isViewed: $isViewed)';
   }
 }
 
