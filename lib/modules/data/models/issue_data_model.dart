@@ -33,16 +33,16 @@ class IssueDataModel {
   factory IssueDataModel.fromJson(Map<String, dynamic> json) {
     final data = IssueDataModel(
       id: json['id'] as int?,
-      nodeId: json['nodeId'] as String?,
+      nodeId: json['node_id'] as String?,
       url: json['url'] as String?,
-      repositoryUrl: json['repositoryUrl'] as String?,
-      labelsUrl: json['labelsUrl'] as String?,
-      commentsUrl: json['commentsUrl'] as String?,
-      eventsUrl: json['eventsUrl'] as String?,
-      htmlUrl: json['htmlUrl'] as String?,
+      repositoryUrl: json['repository_url'] as String?,
+      labelsUrl: json['labels_url'] as String?,
+      commentsUrl: json['comments_url'] as String?,
+      eventsUrl: json['events_url'] as String?,
+      htmlUrl: json['html_url'] as String?,
       number: json['number'] as int?,
       state: json['state'] as String?,
-      stateReason: json['stateReason'] as String?,
+      stateReason: json['state_reason'] as String?,
       title: json['title'] as String?,
       body: json['body'] as String?,
       user: json['user'] == null
@@ -64,18 +64,18 @@ class IssueDataModel {
           )
           .toList(),
       locked: json['locked'] as bool?,
-      activeLockReason: json['activeLockReason'] as String?,
+      activeLockReason: json['active_lock_reason'] as String?,
       comments: json['comments'] as int?,
-      closedAt: json['closedAt'] as String?,
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'] as String?,
+      closedAt: json['closed_at'] as String?,
+      createdAt: json['created_at'],
+      updatedAt: json['updated_at'] as String?,
       draft: json['draft'] as bool?,
-      closedBy: json['closedBy'] == null
+      closedBy: json['closed_by'] == null
           ? null
           : SimpleUserDataModel.fromJson(
-              json['closedBy'] as Map<String, dynamic>,
+              json['closed_by'] as Map<String, dynamic>,
             ),
-      authorAssociation: json['authorAssociation'] as String?,
+      authorAssociation: json['author_association'] as String?,
     );
     return data;
   }
@@ -133,21 +133,21 @@ class SimpleUserDataModel {
   factory SimpleUserDataModel.fromJson(Map<String, dynamic> json) {
     return SimpleUserDataModel(
       id: json['id'] as int?,
-      siteAdmin: json['siteAdmin'] as bool?,
+      siteAdmin: json['site_dmin'] as bool?,
       login: json['login'] as String?,
-      nodeId: json['nodeId'] as String?,
-      avatarUrl: json['avatarUrl'] as String?,
+      nodeId: json['node_id'] as String?,
+      avatarUrl: json['avatar_url'] as String?,
       url: json['url'] as String?,
-      htmlUrl: json['htmlUrl'] as String?,
-      followersUrl: json['followersUrl'] as String?,
-      followingUrl: json['followingUrl'] as String?,
+      htmlUrl: json['html_url'] as String?,
+      followersUrl: json['followers_url'] as String?,
+      followingUrl: json['following_url'] as String?,
       gistsUrl: json['gistsUrl'] as String?,
-      starredUrl: json['starredUrl'] as String?,
-      subscriptionsUrl: json['subscriptionsUrl'] as String?,
-      organizationsUrl: json['organizationsUrl'] as String?,
-      reposUrl: json['reposUrl'] as String?,
-      eventsUrl: json['eventsUrl'] as String?,
-      receivedEventsUrl: json['receivedEventsUrl'] as String?,
+      starredUrl: json['starred_url'] as String?,
+      subscriptionsUrl: json['subscriptions_url'] as String?,
+      organizationsUrl: json['organizations_url'] as String?,
+      reposUrl: json['repos_url'] as String?,
+      eventsUrl: json['events_url'] as String?,
+      receivedEventsUrl: json['received_events_url'] as String?,
       type: json['type'] as String?,
     );
   }
@@ -175,12 +175,12 @@ class LabelDataModel {
   factory LabelDataModel.fromJson(Map<String, dynamic> json) {
     return LabelDataModel(
       id: json['id'] as int?,
-      nodeId: json['nodeId'] as String?,
+      nodeId: json['node_id'] as String?,
       url: json['url'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
       color: json['color'] as String?,
-      defaultLabel: json['defaultLabel'] as bool?,
+      defaultLabel: json['default_label'] as bool?,
     );
   }
   LabelDataModel({
