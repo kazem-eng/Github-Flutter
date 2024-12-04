@@ -1,16 +1,37 @@
 # flutter_issues_viewer
 
-A new Flutter project.
+An app to view issues on the Flutter repository with the limited filter and sort functionality
 
-## Getting Started
+### Setup Instructions
 
-This project is a starting point for a Flutter application.
+Please follow below steps:
 
-A few resources to get you started if this is your first Flutter project:
+- Download and install Flutter sdk More info [here](https://docs.flutter.dev/get-started/install)
+- Download and install IDE (vscode is recommended)
+- Open the project
+- Run following commands:
+  - flutter pub get ( to download required packages)
+  - flutter packages pub run build_runner build ( to generate files and codes required for project)
+- Select a target device such as android-iphone emulator or real device.follow [here](https://docs.flutter.dev/get-started/test-drive) and [here](https://developer.android.com/studio/run/managing-avds) if help is needed:
+- flutter run (to run the project)
+  - for more info on flutter cli [here](https://docs.flutter.dev/reference/flutter-cli)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+\*\*Please make sure that your phone/emulator is connected to the internet so that you are be able to data
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Release info
+
+- android :
+  - flutter build apk --release
+- ios :
+  - flutter build ipa --release
+- more info [ios](https://docs.flutter.dev/deployment/ios) and [android](https://docs.flutter.dev/deployment/android)
+
+### Architecture
+
+Following principles are followed:
+
+- MVVM pattern for screens
+- Injection pattern for dependencies and instantiation
+- SOLID principles
+- Latest Flutter coding style, conventions and lints
+- Some Unit Tests and Widget Tests
