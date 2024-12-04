@@ -39,18 +39,20 @@ class _SuccessState extends State<_Success> {
     final vm = context.watch<IssuesViewmodel>();
     final issues = vm.model.issues;
     return _Wrapper(
-      child: RefreshIndicator(
-        onRefresh: vm.refresh,
-        child: ListView.builder(
-          controller: _scrollController,
-          itemCount: issues.length,
-          itemBuilder: (context, index) {
-            return index == issues.length - 1
-                ? const Center(child: MMLoader())
-                : _IssueItem(index);
-          },
-        ),
-      ),
+      child: issues.isEmpty
+          ? const Center(child: Text('No issues found'))
+          : RefreshIndicator(
+              onRefresh: vm.refresh,
+              child: ListView.builder(
+                controller: _scrollController,
+                itemCount: issues.length,
+                itemBuilder: (context, index) {
+                  return index == issues.length
+                      ? const Center(child: MMLoader())
+                      : _IssueItem(index);
+                },
+              ),
+            ),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_issues_viewer/ui_kit/styles/spacers.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_issues_viewer/core/domain/base/base.dart';
@@ -14,6 +13,7 @@ import 'package:flutter_issues_viewer/modules/views/issues/issues_viewmodel.dart
 import 'package:flutter_issues_viewer/navigation/routes.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_components_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/styles/constants.dart';
+import 'package:flutter_issues_viewer/ui_kit/styles/spacers.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme_components_contracts.dart';
 

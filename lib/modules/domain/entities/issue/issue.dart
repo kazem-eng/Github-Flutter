@@ -13,7 +13,6 @@ class Issue {
     this.state = '',
     this.body = '',
     this.user = const SimpleUser(),
-    this.closedBy = const SimpleUser(),
     this.isViewed = false,
   });
 
@@ -40,7 +39,6 @@ class Issue {
   final String body;
   final SimpleUser user;
   final List<Label> labels;
-  final SimpleUser closedBy;
 
   // internal
   final bool isViewed;
@@ -56,7 +54,6 @@ class Issue {
         other.body == body &&
         other.user == user &&
         listEquals(other.labels, labels) &&
-        other.closedBy == closedBy &&
         other.isViewed == isViewed;
   }
 
@@ -69,7 +66,6 @@ class Issue {
         body.hashCode ^
         user.hashCode ^
         labels.hashCode ^
-        closedBy.hashCode ^
         isViewed.hashCode;
   }
 
@@ -81,7 +77,6 @@ class Issue {
     String? body,
     SimpleUser? user,
     List<Label>? labels,
-    SimpleUser? closedBy,
     bool? isViewed,
   }) {
     return Issue(
@@ -92,7 +87,6 @@ class Issue {
       body: body ?? this.body,
       user: user ?? this.user,
       labels: labels ?? this.labels,
-      closedBy: closedBy ?? this.closedBy,
       isViewed: isViewed ?? this.isViewed,
     );
   }
