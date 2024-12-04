@@ -4,7 +4,6 @@ import 'package:flutter_issues_viewer/ui_kit/components/bottom_sheet/bottom_shee
 import 'package:flutter_issues_viewer/ui_kit/components/bottom_sheet/bottom_sheet_keys.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_components_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_divider.dart';
-import 'package:flutter_issues_viewer/ui_kit/styles/constants.dart';
 import 'package:flutter_issues_viewer/ui_kit/styles/styles_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme.dart';
 
