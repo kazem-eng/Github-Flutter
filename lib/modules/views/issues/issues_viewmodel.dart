@@ -18,7 +18,9 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
   }) : super(initState);
 
   // Injected services
-  final _issuesNetworService = locator<IIssuesNetworkService>();
+  final _issuesNetworService = locator<IIssuesNetworkService>(
+    instanceName: 'graphQlIssuesNetworkService',
+  );
   final _navigationService = locator<NavigationService>();
   final _localStorageService = locator<ILocalStorageService>();
 

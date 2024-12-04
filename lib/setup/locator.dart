@@ -1,3 +1,5 @@
+import 'package:flutter_issues_viewer/core/domain/services/network_service.dart/graph_ql_network_service.dart';
+import 'package:flutter_issues_viewer/modules/data/services/network/issues_graph_ql_network_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,8 +17,18 @@ Future<void> configureDependencies() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   locator
     // Core services
-    ..registerLazySingleton(() => NavigationService())
-    ..registerSingleton<INetworkService>(NetworkService())
+    ..registerLazySingleton(
+      () => NavigationService(),
+    ) // Register the graphql implementation
+    ..registerSingleton<INetworkService>(
+      GraphQlNetworkService(),
+      instanceName: 'graphqlNetworkService',
+    )
+    // Register the rest implementation
+    ..registerSingleton<INetworkService>(
+      NetworkService(),
+      instanceName: 'restNetworkService',
+    )
     ..registerLazySingleton<ISharedPreferencesService>(
       () => SharedPreferencesService(preferences: sharedPreferences),
     )
@@ -25,7 +37,14 @@ Future<void> configureDependencies() async {
 
     // Issues module
     // Data services
-    ..registerFactory<IIssuesNetworkService>(() => IssuesNetworkService())
+    ..registerSingleton<IIssuesNetworkService>(
+      IssuesNetworkService(),
+      instanceName: 'issuesNetworkService',
+    )
+    ..registerSingleton<IIssuesNetworkService>(
+      GraphQlIssuesNetworkService(),
+      instanceName: 'graphQlIssuesNetworkService',
+    )
 
     // Viewmodels
     ..registerFactory(() => IssueFilterViewmodel())

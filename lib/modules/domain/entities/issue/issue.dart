@@ -6,7 +6,7 @@ import 'package:flutter_issues_viewer/modules/domain/entities/issue/user.dart';
 
 class Issue {
   const Issue({
-    this.id = -1,
+    this.id = '',
     this.number = -1,
     this.title = '',
     this.labels = const [],
@@ -32,7 +32,7 @@ class Issue {
     return fromData;
   }
 
-  final int id;
+  final String id;
   final int number;
   final String state;
   final String title;
@@ -70,7 +70,7 @@ class Issue {
   }
 
   Issue copyWith({
-    int? id,
+    String? id,
     int? number,
     String? state,
     String? title,

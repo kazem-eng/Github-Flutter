@@ -1,6 +1,7 @@
 abstract class NetConstants {
   static const connectionTimeout = 20; // seconds
   static const baseURL = 'https://api.github.com/';
+  static const graphQlBaseURL = 'https://api.github.com/graphql';
   static const githubToken = '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';
 
   // header keys

@@ -14,7 +14,7 @@ class IssueDataModel {
 
   factory IssueDataModel.fromJson(Map<String, dynamic> json) {
     final data = IssueDataModel(
-      id: json['id'] as int?,
+      id: json['id'] as String?,
       number: json['number'] as int?,
       state: json['state'] as String?,
       title: json['title'] as String?,
@@ -22,7 +22,7 @@ class IssueDataModel {
       user: json['user'] == null
           ? null
           : SimpleUserDataModel.fromJson(json['user'] as Map<String, dynamic>),
-      labels: json['labels']
+      labels: json['labels']['nodes']
           ?.map<LabelDataModel>(
             (e) => LabelDataModel.fromJson(e as Map<String, dynamic>),
           )
@@ -31,7 +31,7 @@ class IssueDataModel {
     return data;
   }
 
-  final int? id;
+  final String? id;
   final int? number;
   final String? state;
   final String? title;

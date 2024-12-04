@@ -11,7 +11,9 @@ import 'package:flutter_issues_viewer/modules/domain/entities/issue/issue.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 class IssuesNetworkService implements IIssuesNetworkService {
-  final _networkService = locator<INetworkService>();
+  final _networkService = locator<INetworkService>(
+    instanceName: 'restNetworkService',
+  );
 
   static const _issuesPerPage = 20;
   static const _perPage = 'per_page=';
