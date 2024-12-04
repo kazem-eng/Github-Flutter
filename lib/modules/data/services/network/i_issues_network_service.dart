@@ -6,7 +6,7 @@ abstract class IIssuesNetworkService {
   Future<BaseNetResponse<List<Issue>>> issues({
     bool isPaginated = true,
     int pageNumber = 1,
-    IssuesFilterBy filterBy = IssuesFilterBy.assigned,
-    IssuesSortBy sortBy = IssuesSortBy.created,
+    IssuesFilterBy? filterBy,
+    IssuesSortBy? sortBy,
   });
 }

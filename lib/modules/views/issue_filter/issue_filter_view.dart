@@ -18,7 +18,7 @@ class IssueFilterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomSheetWrapper(
-      header: const BottomSheetHeader.onlyTitle(title: 'Filter'),
+      header: const BottomSheetHeader.onlyTitle(title: 'Filter by'),
       body: BaseView<IssueFilterViewmodel>(
         initViewModel: (vm) => vm.initVM(props),
         builder: (context, vm, _) => vm.state.maybeWhen(

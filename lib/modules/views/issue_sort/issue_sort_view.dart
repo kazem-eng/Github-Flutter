@@ -18,7 +18,7 @@ class IssueSortView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomSheetWrapper(
-      header: const BottomSheetHeader.onlyTitle(title: 'Sort'),
+      header: const BottomSheetHeader.onlyTitle(title: 'Sort by'),
       body: BaseView<IssueSortViewmodel>(
         initViewModel: (vm) => vm.initVM(props),
         builder: (context, vm, _) => vm.state.maybeWhen(

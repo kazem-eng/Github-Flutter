@@ -18,10 +18,7 @@ class _IssueItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.background,
         border: Border(
-          bottom: BorderSide(
-            color: color.primary,
-            width: 0.15,
-          ),
+          bottom: BorderSide(color: color.primary, width: 0.15),
         ),
       ),
       child: ListTile(
@@ -30,13 +27,15 @@ class _IssueItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Issue title
             MMText.title(issue.title),
+
+            // Issue labels
             _IssueLabels(issue: issue),
-            const SizedBox(height: 5),
-            MMText.subtitle(
-              subtitle,
-              color: color.subtitle,
-            ),
+            KSpacers.vhalf1,
+
+            // Issue subtitle
+            MMText.subtitle(subtitle, color: color.subtitle),
           ],
         ),
         minVerticalPadding: 10,

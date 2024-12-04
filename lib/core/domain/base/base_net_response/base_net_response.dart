@@ -11,12 +11,11 @@ class BaseNetResponse<Data> with _$BaseNetResponse<Data> {
       BaseNetResponseSuccess<Data>;
 
   const factory BaseNetResponse.error({
-    @Default(null) Data? data,
     @Default(null) BaseException? exception,
   }) = BaseNetResponseError<Data>;
 
   bool get isSuccess => when(
         success: (_) => true,
-        error: (_, __) => false,
+        error: (_) => false,
       );
 }

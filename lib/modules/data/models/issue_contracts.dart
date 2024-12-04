@@ -4,11 +4,11 @@ enum IssuesFilterBy {
   mentioned,
   subscribed,
   repos,
-  all;
+  all,
 }
 
 enum IssuesSortBy {
   created,
   updated,
-  comments;
+  comments,
 }

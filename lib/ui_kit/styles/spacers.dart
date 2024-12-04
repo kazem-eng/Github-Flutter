@@ -21,29 +21,3 @@ abstract class KSpacers {
   static const h7 = SizedBox(width: kSpace7);
   static const h8 = SizedBox(width: kSpace8);
 }
-
-class SpacerBottom extends StatelessWidget {
-  const SpacerBottom({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: screenInsetsBottom(context));
-  }
-}
-
-class SpacerTop extends StatelessWidget {
-  const SpacerTop({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: screenInsetsTop(context));
-  }
-}
-
-double screenInsetsTop(BuildContext context) {
-  return MediaQuery.of(context).padding.top;
-}
-
-double screenInsetsBottom(BuildContext context) {
-  return MediaQuery.of(context).padding.bottom;
-}

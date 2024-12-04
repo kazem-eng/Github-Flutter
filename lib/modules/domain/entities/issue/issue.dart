@@ -10,12 +10,9 @@ class Issue {
     this.number = -1,
     this.title = '',
     this.labels = const [],
-    this.createdAt,
-    this.updatedAt,
     this.state = '',
     this.body = '',
     this.user = const SimpleUser(),
-    this.closedAt,
     this.closedBy = const SimpleUser(),
     this.isViewed = false,
   });
@@ -32,15 +29,6 @@ class Issue {
       labels: issue.labels == null
           ? base.labels
           : issue.labels!.map((e) => Label.fromData(e)).toList(),
-      closedAt: issue.closedAt != null
-          ? DateTime.tryParse(issue.closedAt!)
-          : base.closedAt,
-      createdAt: issue.createdAt != null
-          ? DateTime.parse(issue.createdAt!)
-          : base.createdAt,
-      updatedAt: issue.updatedAt != null
-          ? DateTime.tryParse(issue.updatedAt!)
-          : base.updatedAt,
     );
     return fromData;
   }
@@ -52,9 +40,6 @@ class Issue {
   final String body;
   final SimpleUser user;
   final List<Label> labels;
-  final DateTime? closedAt;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
   final SimpleUser closedBy;
 
   // internal
@@ -71,9 +56,6 @@ class Issue {
         other.body == body &&
         other.user == user &&
         listEquals(other.labels, labels) &&
-        other.closedAt == closedAt &&
-        other.createdAt == createdAt &&
-        other.updatedAt == updatedAt &&
         other.closedBy == closedBy &&
         other.isViewed == isViewed;
   }
@@ -87,9 +69,6 @@ class Issue {
         body.hashCode ^
         user.hashCode ^
         labels.hashCode ^
-        closedAt.hashCode ^
-        createdAt.hashCode ^
-        updatedAt.hashCode ^
         closedBy.hashCode ^
         isViewed.hashCode;
   }
@@ -102,9 +81,6 @@ class Issue {
     String? body,
     SimpleUser? user,
     List<Label>? labels,
-    DateTime? closedAt,
-    DateTime? createdAt,
-    DateTime? updatedAt,
     SimpleUser? closedBy,
     bool? isViewed,
   }) {
@@ -116,9 +92,6 @@ class Issue {
       body: body ?? this.body,
       user: user ?? this.user,
       labels: labels ?? this.labels,
-      closedAt: closedAt ?? this.closedAt,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
       closedBy: closedBy ?? this.closedBy,
       isViewed: isViewed ?? this.isViewed,
     );

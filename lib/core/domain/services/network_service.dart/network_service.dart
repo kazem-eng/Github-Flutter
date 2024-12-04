@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
@@ -31,19 +32,46 @@ class NetworkService extends INetworkService {
               seconds: NetConstants.connectionTimeout,
             ),
           );
-      return BaseNetResponse.success(response);
+      return _handleResponse(response);
     } on SocketException catch (e) {
       log(e.toString());
       return BaseNetResponse.error(
-        data: FetchDataException(message: NetConstants.noConnection),
+        exception: FetchDataException(message: NetConstants.noConnection),
       );
     } on FormatException catch (e) {
       log(e.toString());
-      return BaseNetResponse.error(data: FormatException());
+      return BaseNetResponse.error(exception: FormatException());
     } catch (error) {
       return BaseNetResponse.error(
-        data: UnknownException(message: error.toString()),
+        exception: UnknownException(message: error.toString()),
       );
+    }
+  }
+
+  BaseNetResponse _handleResponse(response) {
+    final body = json.decode(response.body);
+    switch (response.statusCode) {
+      case 200:
+        return BaseNetResponse.success(body);
+      case 400:
+        return BaseNetResponse.error(exception: BadRequestException());
+      case 401:
+      case 403:
+      case 422:
+        final message = body['message'];
+        return BaseNetResponse.error(
+          exception: UnauthorisedException(
+            message: message,
+          ),
+        );
+      case 500:
+        return BaseNetResponse.error(exception: ServerException());
+      default:
+        return BaseNetResponse.error(
+          exception: FetchDataException(
+            message: '${NetConstants.connectionFailure}${response.statusCode}}',
+          ),
+        );
     }
   }
 }

@@ -53,7 +53,7 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
         );
         setState = BaseState.success(_model);
       },
-      error: (data, exception) {
+      error: (exception) {
         log('Error fetching issues: $exception');
         setState = BaseState.error(exception: exception);
       },
@@ -94,7 +94,9 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
   }
 
   Future<void> moreIssues() async {
-    _model = _model.copyWith(currentPage: _model.currentPage + 1);
+    _model = _model.copyWith(
+      currentPage: _model.currentPage + 1,
+    );
     await _fetchIssues();
   }
 

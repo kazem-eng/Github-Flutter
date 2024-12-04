@@ -6,8 +6,8 @@ class IssuesModel {
     this.currentPage = 1,
     this.issues = const [],
     this.viewedIssueIds = const [],
-    this.filteredBy = IssuesFilterBy.assigned,
-    this.sortBy = IssuesSortBy.created,
+    this.filteredBy,
+    this.sortBy,
     this.isDarkTheme = true,
   });
 
@@ -32,7 +32,7 @@ class IssuesModel {
   final List<Issue> issues;
   final List<String> viewedIssueIds;
   final int currentPage;
-  final IssuesFilterBy filteredBy;
-  final IssuesSortBy sortBy;
+  final IssuesFilterBy? filteredBy;
+  final IssuesSortBy? sortBy;
   final bool isDarkTheme;
 }

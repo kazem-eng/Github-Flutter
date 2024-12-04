@@ -2,10 +2,10 @@ import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
 
 class IssueFilterModel {
   const IssueFilterModel({
-    this.selectedFilter = IssuesFilterBy.assigned,
+    this.selectedFilter,
   });
 
-  final IssuesFilterBy selectedFilter;
+  final IssuesFilterBy? selectedFilter;
 
   IssueFilterModel copyWith({
     IssuesFilterBy? selectedFilter,

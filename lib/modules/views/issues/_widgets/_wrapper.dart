@@ -18,11 +18,7 @@ class _Wrapper extends StatelessWidget {
           isDark ? Icons.light_mode : Icons.dark_mode,
           color: themeColor.primary,
         ),
-        onPressed: () {
-          // final newTheme = isDark ? AppTheme.light : AppTheme.dark;
-          vm.switchTheme();
-          // theme.switchTheme(newTheme);
-        },
+        onPressed: vm.switchTheme,
       );
     }
 
@@ -32,7 +28,7 @@ class _Wrapper extends StatelessWidget {
         textColor: themeColor.text,
         items: [
           ContextMenuItem(
-            title: 'sort',
+            title: 'Sort',
             onTap: vm.sort,
           ),
           ContextMenuItem(

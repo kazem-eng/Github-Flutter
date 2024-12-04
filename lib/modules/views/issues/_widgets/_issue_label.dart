@@ -10,34 +10,32 @@ class _IssueLabels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = MMTheme.of(context).color;
-    return Wrap(
-      children: [
-        // labels
-        if (issue.labels.isNotEmpty)
-          ...issue.labels.map(
-            (label) {
-              final bgColor = Color(int.parse('0xFF${label.color}'));
 
-              return SizedBox(
-                height: kSpace4,
-                child: FittedBox(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: kSpace1),
-                    child: Chip(
-                      label: MMText.subtitle(
-                        label.name,
-                        color: label.isColorDark
-                            ? color.primary
-                            : color.background,
-                      ),
-                      backgroundColor: bgColor,
-                    ),
+    if (issue.labels.isEmpty) {
+      return const SizedBox();
+    }
+
+    return Wrap(
+      children: issue.labels.map(
+        (label) {
+          final bgColor = Color(int.parse('0xFF${label.color}'));
+          return SizedBox(
+            height: kSpace4,
+            child: FittedBox(
+              child: Padding(
+                padding: const EdgeInsets.only(right: kSpace1),
+                child: Chip(
+                  label: MMText.subtitle(
+                    label.name,
+                    color: label.isColorDark ? color.background : color.primary,
                   ),
+                  backgroundColor: bgColor,
                 ),
-              );
-            },
-          ),
-      ],
+              ),
+            ),
+          );
+        },
+      ).toList(),
     );
   }
 }

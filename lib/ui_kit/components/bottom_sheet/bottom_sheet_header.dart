@@ -5,6 +5,7 @@ import 'package:flutter_issues_viewer/ui_kit/components/bottom_sheet/bottom_shee
 import 'package:flutter_issues_viewer/ui_kit/components/mm_components_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_divider.dart';
 import 'package:flutter_issues_viewer/ui_kit/styles/constants.dart';
+import 'package:flutter_issues_viewer/ui_kit/styles/styles_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme.dart';
 
 enum BottomSheetHeaderType {
@@ -90,11 +91,11 @@ class BottomSheetHeader extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(height: kSpace1),
+        KSpacers.v1,
         if (showHandler) const Center(child: BottomSheetHandle()),
-        const SizedBox(height: kSpace1),
+        KSpacers.v1,
         buildBody(),
-        const SizedBox(height: kSpace1),
+        KSpacers.v1,
         MMDivider.horizontal(
           height: .2,
           color: color.primary,

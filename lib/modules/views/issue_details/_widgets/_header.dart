@@ -14,7 +14,7 @@ class _Header extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MMText.title(issue.title),
-          const SizedBox(height: kSpace1),
+          KSpacers.v1,
           Chip(
             label: MMText.text(issue.state),
             backgroundColor: mmTheme.color.status,
