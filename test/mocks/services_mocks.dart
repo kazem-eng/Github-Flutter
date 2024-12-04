@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:flutter_issues_viewer/core/domain/base/base_net_response/base_net_response.dart';
 import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
 import 'package:flutter_issues_viewer/modules/data/services/services_export.dart';
-import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
+import 'package:flutter_issues_viewer/modules/domain/entities/issue/issue.dart';
 import 'package:flutter_issues_viewer/navigation/navigation_service.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 

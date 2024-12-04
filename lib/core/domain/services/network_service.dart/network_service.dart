@@ -20,10 +20,11 @@ class NetworkService extends INetworkService {
   }) async {
     try {
       final uri = Uri.parse('${NetConstants.baseURL}$path');
+      final newHeader = header ?? NetConstants.defaultHeader;
       final response = await _client
           .get(
             uri,
-            headers: header ?? NetConstants.defaultHeader,
+            headers: newHeader,
           )
           .timeout(
             const Duration(
@@ -41,7 +42,7 @@ class NetworkService extends INetworkService {
       return BaseNetResponse.error(data: FormatException());
     } catch (error) {
       return BaseNetResponse.error(
-        data: UnknowException(message: error.toString()),
+        data: UnknownException(message: error.toString()),
       );
     }
   }

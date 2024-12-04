@@ -20,19 +20,19 @@ mixin _$BaseNetResponse<Data> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Data data) success,
-    required TResult Function(Data? data, String message) error,
+    required TResult Function(Data? data, BaseException? exception) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Data data)? success,
-    TResult? Function(Data? data, String message)? error,
+    TResult? Function(Data? data, BaseException? exception)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Data data)? success,
-    TResult Function(Data? data, String message)? error,
+    TResult Function(Data? data, BaseException? exception)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -154,7 +154,7 @@ class _$BaseNetResponseSuccessImpl<Data> extends BaseNetResponseSuccess<Data> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Data data) success,
-    required TResult Function(Data? data, String message) error,
+    required TResult Function(Data? data, BaseException? exception) error,
   }) {
     return success(data);
   }
@@ -163,7 +163,7 @@ class _$BaseNetResponseSuccessImpl<Data> extends BaseNetResponseSuccess<Data> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Data data)? success,
-    TResult? Function(Data? data, String message)? error,
+    TResult? Function(Data? data, BaseException? exception)? error,
   }) {
     return success?.call(data);
   }
@@ -172,7 +172,7 @@ class _$BaseNetResponseSuccessImpl<Data> extends BaseNetResponseSuccess<Data> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Data data)? success,
-    TResult Function(Data? data, String message)? error,
+    TResult Function(Data? data, BaseException? exception)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -236,7 +236,7 @@ abstract class _$$BaseNetResponseErrorImplCopyWith<Data, $Res> {
           $Res Function(_$BaseNetResponseErrorImpl<Data>) then) =
       __$$BaseNetResponseErrorImplCopyWithImpl<Data, $Res>;
   @useResult
-  $Res call({Data? data, String message});
+  $Res call({Data? data, BaseException? exception});
 }
 
 /// @nodoc
@@ -255,17 +255,17 @@ class __$$BaseNetResponseErrorImplCopyWithImpl<Data, $Res>
   @override
   $Res call({
     Object? data = freezed,
-    Object? message = null,
+    Object? exception = freezed,
   }) {
     return _then(_$BaseNetResponseErrorImpl<Data>(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as Data?,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      exception: freezed == exception
+          ? _value.exception
+          : exception // ignore: cast_nullable_to_non_nullable
+              as BaseException?,
     ));
   }
 }
@@ -273,7 +273,7 @@ class __$$BaseNetResponseErrorImplCopyWithImpl<Data, $Res>
 /// @nodoc
 
 class _$BaseNetResponseErrorImpl<Data> extends BaseNetResponseError<Data> {
-  const _$BaseNetResponseErrorImpl({this.data = null, this.message = ''})
+  const _$BaseNetResponseErrorImpl({this.data = null, this.exception = null})
       : super._();
 
   @override
@@ -281,11 +281,11 @@ class _$BaseNetResponseErrorImpl<Data> extends BaseNetResponseError<Data> {
   final Data? data;
   @override
   @JsonKey()
-  final String message;
+  final BaseException? exception;
 
   @override
   String toString() {
-    return 'BaseNetResponse<$Data>.error(data: $data, message: $message)';
+    return 'BaseNetResponse<$Data>.error(data: $data, exception: $exception)';
   }
 
   @override
@@ -294,12 +294,13 @@ class _$BaseNetResponseErrorImpl<Data> extends BaseNetResponseError<Data> {
         (other.runtimeType == runtimeType &&
             other is _$BaseNetResponseErrorImpl<Data> &&
             const DeepCollectionEquality().equals(other.data, data) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.exception, exception) ||
+                other.exception == exception));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(data), message);
+      runtimeType, const DeepCollectionEquality().hash(data), exception);
 
   /// Create a copy of BaseNetResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -314,29 +315,29 @@ class _$BaseNetResponseErrorImpl<Data> extends BaseNetResponseError<Data> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Data data) success,
-    required TResult Function(Data? data, String message) error,
+    required TResult Function(Data? data, BaseException? exception) error,
   }) {
-    return error(data, message);
+    return error(data, exception);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Data data)? success,
-    TResult? Function(Data? data, String message)? error,
+    TResult? Function(Data? data, BaseException? exception)? error,
   }) {
-    return error?.call(data, message);
+    return error?.call(data, exception);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Data data)? success,
-    TResult Function(Data? data, String message)? error,
+    TResult Function(Data? data, BaseException? exception)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(data, message);
+      return error(data, exception);
     }
     return orElse();
   }
@@ -374,13 +375,14 @@ class _$BaseNetResponseErrorImpl<Data> extends BaseNetResponseError<Data> {
 }
 
 abstract class BaseNetResponseError<Data> extends BaseNetResponse<Data> {
-  const factory BaseNetResponseError({final Data? data, final String message}) =
-      _$BaseNetResponseErrorImpl<Data>;
+  const factory BaseNetResponseError(
+      {final Data? data,
+      final BaseException? exception}) = _$BaseNetResponseErrorImpl<Data>;
   const BaseNetResponseError._() : super._();
 
   @override
   Data? get data;
-  String get message;
+  BaseException? get exception;
 
   /// Create a copy of BaseNetResponse
   /// with the given fields replaced by the non-null parameter values.

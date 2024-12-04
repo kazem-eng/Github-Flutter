@@ -53,9 +53,9 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
         );
         setState = BaseState.success(_model);
       },
-      error: (_, message) {
-        log('Error fetching issues: $message');
-        setState = const BaseState.error();
+      error: (data, exception) {
+        log('Error fetching issues: $exception');
+        setState = BaseState.error(exception: exception);
       },
     );
   }

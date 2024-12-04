@@ -1,4 +1,4 @@
-import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
+import 'package:flutter_issues_viewer/modules/domain/entities/issue/issue.dart';
 
 class IssueDetailsProps {
   const IssueDetailsProps({

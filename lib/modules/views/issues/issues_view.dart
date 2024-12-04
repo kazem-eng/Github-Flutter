@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_issues_viewer/core/domain/base/base.dart';
 import 'package:flutter_issues_viewer/core/domain/helpers/bottom_sheet_helper.dart';
 import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
-import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
+import 'package:flutter_issues_viewer/modules/domain/entities/issue/issue.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_props.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_view.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_props.dart';
@@ -69,7 +69,9 @@ class _IssuesViewState extends State<IssuesView> {
       builder: (context, vm, _) => vm.state.maybeWhen(
         loading: () => const _Wrapper(child: MMLoader()),
         success: (_) => const _Success(),
-        error: (_) => const _Wrapper(child: MMErrorWidget()),
+        error: (_, exception) => _Wrapper(
+          child: MMErrorWidget(exception),
+        ),
         orElse: () => const SizedBox(),
       ),
     );

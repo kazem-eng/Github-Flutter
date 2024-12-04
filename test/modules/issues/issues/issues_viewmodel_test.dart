@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:flutter_issues_viewer/core/domain/base/base.dart';
 import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
 import 'package:flutter_issues_viewer/modules/data/services/services_export.dart';
-import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
+import 'package:flutter_issues_viewer/modules/domain/entities/issue/issue.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_props.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_props.dart';
 import 'package:flutter_issues_viewer/modules/views/issues/issues_model.dart';

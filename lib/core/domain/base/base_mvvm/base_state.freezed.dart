@@ -22,7 +22,7 @@ mixin _$BaseState<Data> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(Data? data) error,
+    required TResult Function(Data? data, BaseException? exception) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,7 +31,7 @@ mixin _$BaseState<Data> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? empty,
-    TResult? Function(Data? data)? error,
+    TResult? Function(Data? data, BaseException? exception)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,7 +40,7 @@ mixin _$BaseState<Data> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(Data? data)? error,
+    TResult Function(Data? data, BaseException? exception)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,7 +169,7 @@ class _$BaseStateSuccessImpl<Data> implements BaseStateSuccess<Data> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(Data? data) error,
+    required TResult Function(Data? data, BaseException? exception) error,
   }) {
     return success(data);
   }
@@ -181,7 +181,7 @@ class _$BaseStateSuccessImpl<Data> implements BaseStateSuccess<Data> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? empty,
-    TResult? Function(Data? data)? error,
+    TResult? Function(Data? data, BaseException? exception)? error,
   }) {
     return success?.call(data);
   }
@@ -193,7 +193,7 @@ class _$BaseStateSuccessImpl<Data> implements BaseStateSuccess<Data> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(Data? data)? error,
+    TResult Function(Data? data, BaseException? exception)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -302,7 +302,7 @@ class _$BaseStateInitialImpl<Data> implements BaseStateInitial<Data> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(Data? data) error,
+    required TResult Function(Data? data, BaseException? exception) error,
   }) {
     return initial();
   }
@@ -314,7 +314,7 @@ class _$BaseStateInitialImpl<Data> implements BaseStateInitial<Data> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? empty,
-    TResult? Function(Data? data)? error,
+    TResult? Function(Data? data, BaseException? exception)? error,
   }) {
     return initial?.call();
   }
@@ -326,7 +326,7 @@ class _$BaseStateInitialImpl<Data> implements BaseStateInitial<Data> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(Data? data)? error,
+    TResult Function(Data? data, BaseException? exception)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -426,7 +426,7 @@ class _$BaseStateLoadingImpl<Data> implements BaseStateLoading<Data> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(Data? data) error,
+    required TResult Function(Data? data, BaseException? exception) error,
   }) {
     return loading();
   }
@@ -438,7 +438,7 @@ class _$BaseStateLoadingImpl<Data> implements BaseStateLoading<Data> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? empty,
-    TResult? Function(Data? data)? error,
+    TResult? Function(Data? data, BaseException? exception)? error,
   }) {
     return loading?.call();
   }
@@ -450,7 +450,7 @@ class _$BaseStateLoadingImpl<Data> implements BaseStateLoading<Data> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(Data? data)? error,
+    TResult Function(Data? data, BaseException? exception)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -550,7 +550,7 @@ class _$BaseStateEmptyImpl<Data> implements BaseStateEmpty<Data> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(Data? data) error,
+    required TResult Function(Data? data, BaseException? exception) error,
   }) {
     return empty();
   }
@@ -562,7 +562,7 @@ class _$BaseStateEmptyImpl<Data> implements BaseStateEmpty<Data> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? empty,
-    TResult? Function(Data? data)? error,
+    TResult? Function(Data? data, BaseException? exception)? error,
   }) {
     return empty?.call();
   }
@@ -574,7 +574,7 @@ class _$BaseStateEmptyImpl<Data> implements BaseStateEmpty<Data> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(Data? data)? error,
+    TResult Function(Data? data, BaseException? exception)? error,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -634,7 +634,7 @@ abstract class _$$BaseStateErrorImplCopyWith<Data, $Res> {
           $Res Function(_$BaseStateErrorImpl<Data>) then) =
       __$$BaseStateErrorImplCopyWithImpl<Data, $Res>;
   @useResult
-  $Res call({Data? data});
+  $Res call({Data? data, BaseException? exception});
 }
 
 /// @nodoc
@@ -651,12 +651,17 @@ class __$$BaseStateErrorImplCopyWithImpl<Data, $Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? exception = freezed,
   }) {
     return _then(_$BaseStateErrorImpl<Data>(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as Data?,
+      exception: freezed == exception
+          ? _value.exception
+          : exception // ignore: cast_nullable_to_non_nullable
+              as BaseException?,
     ));
   }
 }
@@ -664,15 +669,18 @@ class __$$BaseStateErrorImplCopyWithImpl<Data, $Res>
 /// @nodoc
 
 class _$BaseStateErrorImpl<Data> implements BaseStateError<Data> {
-  const _$BaseStateErrorImpl({this.data = null});
+  const _$BaseStateErrorImpl({this.data = null, this.exception = null});
 
   @override
   @JsonKey()
   final Data? data;
+  @override
+  @JsonKey()
+  final BaseException? exception;
 
   @override
   String toString() {
-    return 'BaseState<$Data>.error(data: $data)';
+    return 'BaseState<$Data>.error(data: $data, exception: $exception)';
   }
 
   @override
@@ -680,12 +688,14 @@ class _$BaseStateErrorImpl<Data> implements BaseStateError<Data> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BaseStateErrorImpl<Data> &&
-            const DeepCollectionEquality().equals(other.data, data));
+            const DeepCollectionEquality().equals(other.data, data) &&
+            (identical(other.exception, exception) ||
+                other.exception == exception));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(data), exception);
 
   /// Create a copy of BaseState
   /// with the given fields replaced by the non-null parameter values.
@@ -704,9 +714,9 @@ class _$BaseStateErrorImpl<Data> implements BaseStateError<Data> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(Data? data) error,
+    required TResult Function(Data? data, BaseException? exception) error,
   }) {
-    return error(data);
+    return error(data, exception);
   }
 
   @override
@@ -716,9 +726,9 @@ class _$BaseStateErrorImpl<Data> implements BaseStateError<Data> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? empty,
-    TResult? Function(Data? data)? error,
+    TResult? Function(Data? data, BaseException? exception)? error,
   }) {
-    return error?.call(data);
+    return error?.call(data, exception);
   }
 
   @override
@@ -728,11 +738,11 @@ class _$BaseStateErrorImpl<Data> implements BaseStateError<Data> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(Data? data)? error,
+    TResult Function(Data? data, BaseException? exception)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(data);
+      return error(data, exception);
     }
     return orElse();
   }
@@ -779,9 +789,12 @@ class _$BaseStateErrorImpl<Data> implements BaseStateError<Data> {
 }
 
 abstract class BaseStateError<Data> implements BaseState<Data> {
-  const factory BaseStateError({final Data? data}) = _$BaseStateErrorImpl<Data>;
+  const factory BaseStateError(
+      {final Data? data,
+      final BaseException? exception}) = _$BaseStateErrorImpl<Data>;
 
   Data? get data;
+  BaseException? get exception;
 
   /// Create a copy of BaseState
   /// with the given fields replaced by the non-null parameter values.

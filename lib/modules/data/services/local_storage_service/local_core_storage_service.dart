@@ -1,20 +1,8 @@
 import 'dart:developer';
 
-import 'package:flutter_issues_viewer/modules/data/services/local_storage_service/shared_preferences_service.dart';
+import 'package:flutter_issues_viewer/modules/data/services/local_storage_service/i_local_core_storage_service.dart';
+import 'package:flutter_issues_viewer/modules/data/services/shared_preferences_service/shared_preferences_service_export.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
-
-enum StorageKey {
-  appTheme,
-  viewedIssues;
-}
-
-abstract class ILocalStorageService {
-  bool isDarkTheme();
-  Future<bool> setIsDarkTheme({required bool isDarkTheme});
-
-  List<String> getViewedIssues();
-  Future<bool> setViewedIssues(List<String> issueIds);
-}
 
 class LocalStorageService implements ILocalStorageService {
   final _storageService = locator<ISharedPreferencesService>();

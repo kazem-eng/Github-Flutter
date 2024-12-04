@@ -10,7 +10,9 @@ class _IssueItem extends StatelessWidget {
     final vm = context.watch<IssuesViewmodel>();
     final color = MMTheme.of(context).color;
     final issue = vm.model.issues[issueIndex];
-    final viewed = issue.isViewed ? 'viewed  \uD83D\uDC40 |' : '';
+    final viewed = issue.isViewed ? 'Viewed  \uD83D\uDC40 |' : '';
+    final subtitle =
+        '$viewed #${issue.number} ${issue.state} by ${issue.user.login}';
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -32,8 +34,8 @@ class _IssueItem extends StatelessWidget {
             _IssueLabels(issue: issue),
             const SizedBox(height: 5),
             MMText.subtitle(
-              '$viewed #${issue.number} ${issue.state} by ${issue.user.login}',
-              color: Colors.grey[600],
+              subtitle,
+              color: color.subtitle,
             ),
           ],
         ),

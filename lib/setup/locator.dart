@@ -2,8 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_issues_viewer/core/domain/services/network_service.dart/network_export.dart';
-import 'package:flutter_issues_viewer/modules/data/services/local_storage_service/local_core_storage_export.dart';
-import 'package:flutter_issues_viewer/modules/data/services/network/issues_network_export.dart';
+import 'package:flutter_issues_viewer/modules/data/services/services_export.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_details/issue_details_viewmodel.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_viewmodel.dart';
 import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_viewmodel.dart';

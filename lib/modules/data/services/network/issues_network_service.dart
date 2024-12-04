@@ -1,15 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter_issues_viewer/core/domain/base/base_exception.dart';
 import 'package:flutter_issues_viewer/core/domain/base/base_net_response/base_net_response.dart';
 import 'package:flutter_issues_viewer/core/domain/services/network_service.dart/i_network_service.dart';
 import 'package:flutter_issues_viewer/core/domain/services/network_service.dart/network_constants.dart';
 import 'package:flutter_issues_viewer/core/domain/services/network_service.dart/network_exception.dart';
 import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
-import 'package:flutter_issues_viewer/modules/data/models/issue_data_model.dart';
+import 'package:flutter_issues_viewer/modules/data/models/issue/issue_data_model.dart';
 import 'package:flutter_issues_viewer/modules/data/services/network/i_issues_network_service.dart';
 import 'package:flutter_issues_viewer/modules/data/services/network/issues_endpoints.dart';
-import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
+import 'package:flutter_issues_viewer/modules/domain/entities/issue/issue.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 class IssuesNetworkService implements IIssuesNetworkService {
@@ -51,7 +52,7 @@ class IssuesNetworkService implements IIssuesNetworkService {
           if (handledResponse is BaseNetResponseError) {
             log(handledResponse.toString());
             return BaseNetResponse.error(
-              message: handledResponse.data.message,
+              exception: handledResponse.exception,
             );
           }
 
@@ -69,15 +70,21 @@ class IssuesNetworkService implements IIssuesNetworkService {
           return BaseNetResponse.success(issues);
         } catch (e) {
           log('Error parsing JSON: $e');
-          return const BaseNetResponse.error(
-            message: 'Error parsing JSON data',
+          return BaseNetResponse.error(
+            exception: BaseException(
+              prefix: 'IssuesNetworkService',
+              message: 'Error parsing JSON',
+            ),
           );
         }
       },
-      error: (data, message) {
-        log('Error fetching issues: $message');
+      error: (data, exception) {
+        log(data.toString());
         return BaseNetResponse.error(
-          message: 'Error fetching issues: $message',
+          exception: BaseException(
+            prefix: 'IssuesNetworkService',
+            message: 'Error fetching issues: ${data.toString()}',
+          ),
         );
       },
     );

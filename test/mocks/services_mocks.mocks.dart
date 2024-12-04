@@ -10,13 +10,13 @@ import 'package:flutter_issues_viewer/core/domain/base/base_net_response/base_ne
     as _i3;
 import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart'
     as _i8;
-import 'package:flutter_issues_viewer/modules/data/services/local_storage_service/local_core_storage_service.dart'
+import 'package:flutter_issues_viewer/modules/data/services/local_storage_service/i_local_core_storage_service.dart'
     as _i9;
-import 'package:flutter_issues_viewer/modules/data/services/local_storage_service/shared_preferences_service.dart'
-    as _i10;
 import 'package:flutter_issues_viewer/modules/data/services/network/i_issues_network_service.dart'
     as _i6;
-import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart'
+import 'package:flutter_issues_viewer/modules/data/services/shared_preferences_service/i_shared_preferences_service.dart'
+    as _i10;
+import 'package:flutter_issues_viewer/modules/domain/entities/issue/issue.dart'
     as _i7;
 import 'package:flutter_issues_viewer/navigation/navigation_service.dart'
     as _i4;

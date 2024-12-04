@@ -1,5 +1,5 @@
 import 'package:flutter_issues_viewer/modules/data/models/issue_export.dart';
-import 'package:flutter_issues_viewer/modules/domain/entities/issue.dart';
+import 'package:flutter_issues_viewer/modules/domain/entities/issue/issue.dart';
 
 class IssuesModel {
   const IssuesModel({

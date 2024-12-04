@@ -1,17 +1,5 @@
+import 'package:flutter_issues_viewer/core/domain/base/base_exception.dart';
 import 'package:flutter_issues_viewer/core/domain/services/network_service.dart/network_constants.dart';
-
-class BaseException implements Exception {
-  BaseException({
-    required this.prefix,
-    required this.message,
-  });
-
-  final String prefix;
-  final String message;
-
-  @override
-  String toString() => '$prefix$message';
-}
 
 //Network Exceptions
 class FetchDataException extends BaseException {
@@ -46,8 +34,8 @@ class ServerException extends BaseException {
         );
 }
 
-class UnknowException extends BaseException {
-  UnknowException({String? message})
+class UnknownException extends BaseException {
+  UnknownException({String? message})
       : super(
           message: message ?? '',
           prefix: NetConstants.unknownError,
