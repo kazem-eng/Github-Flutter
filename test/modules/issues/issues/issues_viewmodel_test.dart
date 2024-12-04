@@ -70,8 +70,8 @@ void main() {
       verify(issueNetService.issues());
       expect(viewModel.state, BaseState.success(viewModel.model));
       expect(viewModel.model.currentPage, 1);
-      expect(viewModel.model.filteredBy, IssuesFilterBy.assigned);
-      expect(viewModel.model.sortBy, IssuesSortBy.created);
+      expect(viewModel.model.filteredBy, isNull);
+      expect(viewModel.model.sortBy, isNull);
       expect(viewModel.model.issues, isNotEmpty);
       expect(viewModel.model.issues, issues);
     });
@@ -82,20 +82,10 @@ void main() {
         'Then selectedSort is updated and issues are fetched sorted', () async {
       // arrange
       const expectedSort = IssuesSortBy.updated;
-      final dateNow = DateTime(2023, 1, 1, 12);
-      final dateYesterday = dateNow.subtract(const Duration(days: 1));
 
-      final initIssues = [
-        Issue(
-          id: 1,
-          title: 'Issue 1',
-          updatedAt: dateYesterday,
-        ),
-        Issue(
-          id: 2,
-          title: 'Issue 2',
-          updatedAt: dateNow,
-        ),
+      const initIssues = [
+        Issue(id: 1, title: 'Issue 1'),
+        Issue(id: 2, title: 'Issue 2'),
       ];
       final sortMock = MockIssueSortCallback();
       when(
@@ -104,7 +94,7 @@ void main() {
 
       // Before sort
       getAndRegisterIssuesNetworkService(
-        issuesStub: BaseNetResponse.success(initIssues),
+        issuesStub: const BaseNetResponse.success(initIssues),
       );
       final viewModel = IssuesViewmodel();
       // act
@@ -114,7 +104,7 @@ void main() {
         themeInitializer: ({required isDark}) {},
       );
       // assert
-      expect(viewModel.model.sortBy, IssuesSortBy.created); // default sort
+      expect(viewModel.model.sortBy, isNull); // default sort
       expect(viewModel.model.issues, initIssues);
 
       // Model after sort
@@ -153,10 +143,7 @@ void main() {
         themeInitializer: ({required isDark}) {},
       );
       // assert
-      expect(
-        viewModel.model.filteredBy,
-        IssuesFilterBy.assigned,
-      ); // default filter
+      expect(viewModel.model.filteredBy, isNull); // default filter
       expect(viewModel.model.issues, initIssues);
 
       // Model after filter

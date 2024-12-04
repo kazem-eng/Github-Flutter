@@ -133,8 +133,8 @@ class MockIIssuesNetworkService extends _i2.Mock
   _i5.Future<_i3.BaseNetResponse<List<_i7.Issue>>> issues({
     bool? isPaginated = true,
     int? pageNumber = 1,
-    _i8.IssuesFilterBy? filterBy = _i8.IssuesFilterBy.assigned,
-    _i8.IssuesSortBy? sortBy = _i8.IssuesSortBy.created,
+    _i8.IssuesFilterBy? filterBy,
+    _i8.IssuesSortBy? sortBy,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
