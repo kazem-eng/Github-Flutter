@@ -24,7 +24,6 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
 
   late final IssueFilterCallback _filterBottomSheet;
   late final IssueSortCallback _sortBottomSheet;
-  late final void Function({required bool isDark}) _themeInitializer;
 
   //state
   var _model = const IssuesModel();
@@ -62,12 +61,7 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
 
   Future<void> _getStorageData() async {
     final viewedIssues = _localStorageService.getViewedIssues();
-    final isDarkTheme = _localStorageService.isDarkTheme();
-    _themeInitializer(isDark: isDarkTheme);
-    _model = _model.copyWith(
-      viewedIssueIds: viewedIssues,
-      isDarkTheme: isDarkTheme,
-    );
+    _model = _model.copyWith(viewedIssueIds: viewedIssues);
     notifyListeners();
   }
 
@@ -84,11 +78,9 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
   Future<void> initCalendar({
     required IssueFilterCallback filterBottomSheet,
     required IssueSortCallback sortBottomSheet,
-    required void Function({required bool isDark}) themeInitializer,
   }) async {
     _filterBottomSheet = filterBottomSheet;
     _sortBottomSheet = sortBottomSheet;
-    _themeInitializer = themeInitializer;
     await _getStorageData();
     await _fetchIssues();
   }
@@ -137,10 +129,8 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
   }
 
   void switchTheme() {
-    final revertedTheme = !_model.isDarkTheme;
-    _themeInitializer(isDark: revertedTheme);
-    _localStorageService.setIsDarkTheme(isDarkTheme: revertedTheme);
-    _model = _model.copyWith(isDarkTheme: revertedTheme);
-    notifyListeners();
+    _localStorageService.setIsDarkTheme(
+      isDarkTheme: !_localStorageService.isDarkTheme(),
+    );
   }
 }

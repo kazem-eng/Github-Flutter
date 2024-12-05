@@ -8,7 +8,6 @@ class IssuesModel {
     this.viewedIssueIds = const [],
     this.filteredBy,
     this.sortBy,
-    this.isDarkTheme = true,
   });
 
   IssuesModel copyWith({
@@ -17,7 +16,6 @@ class IssuesModel {
     IssuesFilterBy? filteredBy,
     IssuesSortBy? sortBy,
     int? currentPage,
-    bool? isDarkTheme,
   }) {
     return IssuesModel(
       issues: issues ?? this.issues,
@@ -25,7 +23,6 @@ class IssuesModel {
       sortBy: sortBy ?? this.sortBy,
       currentPage: currentPage ?? this.currentPage,
       viewedIssueIds: viewedIssueIds ?? this.viewedIssueIds,
-      isDarkTheme: isDarkTheme ?? this.isDarkTheme,
     );
   }
 
@@ -34,5 +31,4 @@ class IssuesModel {
   final int currentPage;
   final IssuesFilterBy? filteredBy;
   final IssuesSortBy? sortBy;
-  final bool isDarkTheme;
 }

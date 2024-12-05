@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:flutter_issues_viewer/core/domain/base/base.dart';
@@ -14,7 +13,6 @@ import 'package:flutter_issues_viewer/ui_kit/theme/theme_export.dart';
 import '../../../mocks/services_mocks.dart';
 import 'issue_view_test.mocks.dart';
 
-@GenerateMocks([IssuesViewmodel])
 void main() {
   setUpAll(() {
     // Register mocked services

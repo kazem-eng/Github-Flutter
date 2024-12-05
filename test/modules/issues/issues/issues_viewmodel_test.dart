@@ -63,7 +63,6 @@ void main() {
       await viewModel.initCalendar(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: (IssueSortProps _) => Future.value(),
-        themeInitializer: ({required isDark}) {},
       );
 
       // assert
@@ -101,7 +100,6 @@ void main() {
       await viewModel.initCalendar(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: sortMock.sortIssues,
-        themeInitializer: ({required isDark}) {},
       );
       // assert
       expect(viewModel.model.sortBy, isNull); // default sort
@@ -140,7 +138,6 @@ void main() {
         sortBottomSheet: (IssueSortProps props) {
           return Future.value();
         },
-        themeInitializer: ({required isDark}) {},
       );
       // assert
       expect(viewModel.model.filteredBy, isNull); // default filter
@@ -173,7 +170,6 @@ void main() {
       await viewModel.initCalendar(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: (IssueSortProps _) => Future.value(),
-        themeInitializer: ({required isDark}) {},
       );
 
       getAndRegisterIssuesNetworkService(

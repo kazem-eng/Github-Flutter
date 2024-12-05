@@ -18,7 +18,10 @@ class _Wrapper extends StatelessWidget {
           isDark ? Icons.light_mode : Icons.dark_mode,
           color: themeColor.primary,
         ),
-        onPressed: vm.switchTheme,
+        onPressed: () {
+          theme.switchTheme(isDark ? AppTheme.light : AppTheme.dark);
+          vm.switchTheme();
+        },
       );
     }
 
