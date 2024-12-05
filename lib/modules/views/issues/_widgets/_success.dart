@@ -47,8 +47,13 @@ class _SuccessState extends State<_Success> {
                 controller: _scrollController,
                 itemCount: issues.length,
                 itemBuilder: (context, index) {
-                  return index == issues.length
-                      ? const Center(child: MMLoader())
+                  return index == issues.length - 1
+                      ? Column(
+                          children: [
+                            _IssueItem(index),
+                            const Center(child: MMLoader()),
+                          ],
+                        )
                       : _IssueItem(index);
                 },
               ),
