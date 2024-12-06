@@ -3,9 +3,9 @@ import 'package:mockito/mockito.dart';
 
 import 'package:flutter_issues_viewer/core/base/base_net_response/base_net_response.dart';
 import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
-import 'package:flutter_issues_viewer/modules/issues/data/models/issue_contracts.dart';
-import 'package:flutter_issues_viewer/modules/issues/data/services/services_export.dart';
-import 'package:flutter_issues_viewer/modules/issues/domain/entities/issue/issue.dart';
+import 'package:flutter_issues_viewer/features/issues/data/models/issue_contracts.dart';
+import 'package:flutter_issues_viewer/features/issues/data/services/services_export.dart';
+import 'package:flutter_issues_viewer/features/issues/domain/entities/issue/issue.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 import 'services_mocks.mocks.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_issues_viewer/modules/issues/presentation/issue_details/issue_details_props.dart';
-import 'package:flutter_issues_viewer/modules/issues/presentation/issue_details/issue_details_view.dart';
-import 'package:flutter_issues_viewer/modules/issues/presentation/issues_list/issues_view.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_details/issue_details_props.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_details/issue_details_view.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_view.dart';
 import 'package:flutter_issues_viewer/core/services/navigation_service/routes.dart';
 
 Route _cupertino(Widget route) {

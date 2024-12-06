@@ -2,11 +2,11 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
-import 'package:flutter_issues_viewer/modules/issues/data/services/services_export.dart';
-import 'package:flutter_issues_viewer/modules/issues/presentation/issue_details/issue_details_viewmodel.dart';
-import 'package:flutter_issues_viewer/modules/issues/presentation/issue_filter/issue_filter_viewmodel.dart';
-import 'package:flutter_issues_viewer/modules/issues/presentation/issue_sort/issue_sort_viewmodel.dart';
-import 'package:flutter_issues_viewer/modules/issues/presentation/issues_list/issues_viewmodel.dart';
+import 'package:flutter_issues_viewer/features/issues/data/services/services_export.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_details/issue_details_viewmodel.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/issue_filter_viewmodel.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_viewmodel.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_viewmodel.dart';
 
 final locator = GetIt.instance;
 

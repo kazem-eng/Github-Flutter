@@ -4,10 +4,10 @@ import 'package:mockito/mockito.dart';
 
 import 'package:flutter_issues_viewer/core/base/base.dart';
 import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
-import 'package:flutter_issues_viewer/modules/issues/data/models/issue_contracts.dart';
-import 'package:flutter_issues_viewer/modules/issues/presentation/issue_sort/issue_sort_model.dart';
-import 'package:flutter_issues_viewer/modules/issues/presentation/issue_sort/issue_sort_props.dart';
-import 'package:flutter_issues_viewer/modules/issues/presentation/issue_sort/issue_sort_viewmodel.dart';
+import 'package:flutter_issues_viewer/features/issues/data/models/issue_contracts.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_model.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_props.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_viewmodel.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 import '../../../mocks/services_mocks.dart';
