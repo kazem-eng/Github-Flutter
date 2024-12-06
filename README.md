@@ -30,8 +30,9 @@ Please follow below steps:
 
 Following principles are followed:
 
-- MVVM pattern for screens
+- CLEAN architecture 
+- MVVM pattern for presentation layer
 - Injection pattern for dependencies and instantiation
 - SOLID principles
 - Latest Flutter coding style, conventions and lints
-- Some Unit Tests and Widget Tests
+- Covered by Unit Tests and Widget Tests

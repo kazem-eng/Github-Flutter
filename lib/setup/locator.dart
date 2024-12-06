@@ -20,12 +20,12 @@ Future<void> configureDependencies() async {
       () => SharedPreferencesService(preferences: sharedPreferences),
     )
     ..registerSingleton<ILocalStorageService>(LocalStorageService())
-    ..registerLazySingleton<IIssueStorageService>(() => IssueStorageService())
     // ------------------------------------------------------------
 
     // Issues module
     // Data services
     ..registerFactory<IIssuesNetworkService>(() => IssuesNetworkService())
+    ..registerLazySingleton<IIssueStorageService>(() => IssueStorageService())
 
     // Viewmodels
     ..registerFactory(() => IssueFilterViewmodel())
