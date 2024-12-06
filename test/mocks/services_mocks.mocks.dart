@@ -14,13 +14,13 @@ import 'package:flutter_issues_viewer/core/services/navigation_service/navigatio
     as _i4;
 import 'package:flutter_issues_viewer/core/services/shared_preferences_service/i_shared_preferences_service.dart'
     as _i11;
-import 'package:flutter_issues_viewer/modules/issuess/data/models/issue_contracts.dart'
+import 'package:flutter_issues_viewer/modules/issues/data/models/issue_contracts.dart'
     as _i9;
-import 'package:flutter_issues_viewer/modules/issuess/data/services/issue_network_service/i_issues_network_service.dart'
+import 'package:flutter_issues_viewer/modules/issues/data/services/issue_network_service/i_issues_network_service.dart'
     as _i7;
-import 'package:flutter_issues_viewer/modules/issuess/data/services/issue_storage_service/i_issue_storage_service.dart'
+import 'package:flutter_issues_viewer/modules/issues/data/services/issue_storage_service/i_issue_storage_service.dart'
     as _i10;
-import 'package:flutter_issues_viewer/modules/issuess/domain/entities/issue/issue.dart'
+import 'package:flutter_issues_viewer/modules/issues/domain/entities/issue/issue.dart'
     as _i8;
 import 'package:mockito/mockito.dart' as _i2;
 

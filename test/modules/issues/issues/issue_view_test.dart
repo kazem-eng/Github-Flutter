@@ -4,11 +4,11 @@ import 'package:mockito/mockito.dart';
 
 import 'package:flutter_issues_viewer/core/base/base.dart';
 import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
-import 'package:flutter_issues_viewer/modules/issuess/data/services/issue_network_service/i_issues_network_service.dart';
-import 'package:flutter_issues_viewer/modules/issuess/data/services/issue_storage_service/i_issue_storage_service.dart';
-import 'package:flutter_issues_viewer/modules/issuess/domain/entities/issue/issue.dart';
-import 'package:flutter_issues_viewer/modules/issuess/presentation/issues/issues_view.dart';
-import 'package:flutter_issues_viewer/modules/issuess/presentation/issues/issues_viewmodel.dart';
+import 'package:flutter_issues_viewer/modules/issues/data/services/issue_network_service/i_issues_network_service.dart';
+import 'package:flutter_issues_viewer/modules/issues/data/services/issue_storage_service/i_issue_storage_service.dart';
+import 'package:flutter_issues_viewer/modules/issues/domain/entities/issue/issue.dart';
+import 'package:flutter_issues_viewer/modules/issues/presentation/issues_list/issues_view.dart';
+import 'package:flutter_issues_viewer/modules/issues/presentation/issues_list/issues_viewmodel.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_components_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme_export.dart';
