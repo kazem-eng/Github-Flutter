@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_issues_viewer/core/base/base_mvvm/base_view.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_details/issue_details_props.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_details/issue_details_viewmodel.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_details/issue_details_props.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_details/issue_details_viewmodel.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_components_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/styles/styles_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme.dart';

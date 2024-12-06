@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:flutter_issues_viewer/modules/issuess/data/services/local_storage_service/i_local_storage_service.dart';
+import 'package:flutter_issues_viewer/core/services/local_storage_service/i_local_storage_service.dart';
 import 'package:flutter_issues_viewer/core/services/shared_preferences_service/shared_preferences_service_export.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
@@ -8,25 +8,27 @@ class LocalStorageService implements ILocalStorageService {
   final _storageService = locator<ISharedPreferencesService>();
 
   @override
-  List<String> getViewedIssues() {
+  bool isDarkTheme() {
     try {
-      return _storageService.getStringList(StorageKey.viewedIssues.name) ?? [];
+      return _storageService.getBool(CoreStorageKey.appTheme.name) ?? false;
     } catch (e) {
       _reportIssue(e, 'isDarkTheme');
-      return [];
+      return false;
     }
   }
 
   @override
-  Future<bool> setViewedIssues(List<String> issueIds) {
+  Future<bool> setDarkTheme({
+    required bool isDarkTheme,
+  }) async {
     try {
-      return _storageService.setStringList(
-        key: StorageKey.viewedIssues.name,
-        value: issueIds,
+      return await _storageService.setBool(
+        key: CoreStorageKey.appTheme.name,
+        value: isDarkTheme,
       );
     } catch (e) {
-      _reportIssue(e, 'setViewedIssues');
-      return Future.value(false);
+      _reportIssue(e, 'setIsDarkTheme');
+      return false;
     }
   }
 }

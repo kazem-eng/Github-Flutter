@@ -7,7 +7,7 @@ import 'dart:async' as _i3;
 
 import 'package:flutter_issues_viewer/modules/issuess/data/models/issue_contracts.dart'
     as _i4;
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_sort/issue_sort_props.dart'
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_sort/issue_sort_props.dart'
     as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 

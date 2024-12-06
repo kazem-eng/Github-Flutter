@@ -2,8 +2,8 @@ import 'package:flutter_issues_viewer/setup/locator.dart';
 import 'package:flutter_issues_viewer/core/base/base.dart';
 import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
 import 'package:flutter_issues_viewer/modules/issuess/data/models/issue_contracts.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_filter/issue_filter_model.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_filter/issue_filter_props.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_filter/issue_filter_model.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_filter/issue_filter_props.dart';
 
 class IssueFilterViewmodel extends BaseViewModel<BaseState<IssueFilterModel>> {
   IssueFilterViewmodel({

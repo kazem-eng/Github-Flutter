@@ -8,18 +8,20 @@ import 'dart:async' as _i5;
 import 'package:flutter/material.dart' as _i1;
 import 'package:flutter_issues_viewer/core/base/base_net_response/base_net_response.dart'
     as _i3;
+import 'package:flutter_issues_viewer/core/services/local_storage_service/i_local_storage_service.dart'
+    as _i6;
 import 'package:flutter_issues_viewer/core/services/navigation_service/navigation_service.dart'
     as _i4;
 import 'package:flutter_issues_viewer/core/services/shared_preferences_service/i_shared_preferences_service.dart'
-    as _i10;
+    as _i11;
 import 'package:flutter_issues_viewer/modules/issuess/data/models/issue_contracts.dart'
-    as _i8;
-import 'package:flutter_issues_viewer/modules/issuess/data/services/local_storage_service/i_local_storage_service.dart'
     as _i9;
-import 'package:flutter_issues_viewer/modules/issuess/data/services/network_service/i_issues_network_service.dart'
-    as _i6;
-import 'package:flutter_issues_viewer/modules/issuess/domain/entities/issue/issue.dart'
+import 'package:flutter_issues_viewer/modules/issuess/data/services/issue_network_service/i_issues_network_service.dart'
     as _i7;
+import 'package:flutter_issues_viewer/modules/issuess/data/services/issue_storage_service/i_issue_storage_service.dart'
+    as _i10;
+import 'package:flutter_issues_viewer/modules/issuess/domain/entities/issue/issue.dart'
+    as _i8;
 import 'package:mockito/mockito.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -124,17 +126,45 @@ class MockNavigationService extends _i2.Mock implements _i4.NavigationService {
       ) as _i5.Future<void>);
 }
 
+/// A class which mocks [ILocalStorageService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockILocalStorageService extends _i2.Mock
+    implements _i6.ILocalStorageService {
+  @override
+  bool isDarkTheme() => (super.noSuchMethod(
+        Invocation.method(
+          #isDarkTheme,
+          [],
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  _i5.Future<bool> setDarkTheme({required bool? isDarkTheme}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setDarkTheme,
+          [],
+          {#isDarkTheme: isDarkTheme},
+        ),
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
+}
+
 /// A class which mocks [IIssuesNetworkService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockIIssuesNetworkService extends _i2.Mock
-    implements _i6.IIssuesNetworkService {
+    implements _i7.IIssuesNetworkService {
   @override
-  _i5.Future<_i3.BaseNetResponse<List<_i7.Issue>>> issues({
+  _i5.Future<_i3.BaseNetResponse<List<_i8.Issue>>> issues({
     bool? isPaginated = true,
     int? pageNumber = 1,
-    _i8.IssuesFilterBy? filterBy,
-    _i8.IssuesSortBy? sortBy,
+    _i9.IssuesFilterBy? filterBy,
+    _i9.IssuesSortBy? sortBy,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -147,8 +177,8 @@ class MockIIssuesNetworkService extends _i2.Mock
             #sortBy: sortBy,
           },
         ),
-        returnValue: _i5.Future<_i3.BaseNetResponse<List<_i7.Issue>>>.value(
-            _FakeBaseNetResponse_1<List<_i7.Issue>>(
+        returnValue: _i5.Future<_i3.BaseNetResponse<List<_i8.Issue>>>.value(
+            _FakeBaseNetResponse_1<List<_i8.Issue>>(
           this,
           Invocation.method(
             #issues,
@@ -162,8 +192,8 @@ class MockIIssuesNetworkService extends _i2.Mock
           ),
         )),
         returnValueForMissingStub:
-            _i5.Future<_i3.BaseNetResponse<List<_i7.Issue>>>.value(
-                _FakeBaseNetResponse_1<List<_i7.Issue>>(
+            _i5.Future<_i3.BaseNetResponse<List<_i8.Issue>>>.value(
+                _FakeBaseNetResponse_1<List<_i8.Issue>>(
           this,
           Invocation.method(
             #issues,
@@ -176,14 +206,14 @@ class MockIIssuesNetworkService extends _i2.Mock
             },
           ),
         )),
-      ) as _i5.Future<_i3.BaseNetResponse<List<_i7.Issue>>>);
+      ) as _i5.Future<_i3.BaseNetResponse<List<_i8.Issue>>>);
 }
 
-/// A class which mocks [ILocalStorageService].
+/// A class which mocks [IIssueStorageService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockILocalStorageService extends _i2.Mock
-    implements _i9.ILocalStorageService {
+class MockIIssueStorageService extends _i2.Mock
+    implements _i10.IIssueStorageService {
   @override
   List<String> getViewedIssues() => (super.noSuchMethod(
         Invocation.method(
@@ -210,7 +240,7 @@ class MockILocalStorageService extends _i2.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockISharedPreferencesService extends _i2.Mock
-    implements _i10.ISharedPreferencesService {
+    implements _i11.ISharedPreferencesService {
   @override
   _i5.Future<bool> setStringList({
     required String? key,

@@ -6,10 +6,10 @@ import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
 import 'package:flutter_issues_viewer/modules/issuess/data/models/issue_contracts.dart';
 import 'package:flutter_issues_viewer/modules/issuess/data/services/services_export.dart';
 import 'package:flutter_issues_viewer/modules/issuess/domain/entities/issue/issue.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_filter/issue_filter_props.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_sort/issue_sort_props.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issues/issues_model.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issues/issues_viewmodel.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_filter/issue_filter_props.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_sort/issue_sort_props.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issues/issues_model.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issues/issues_viewmodel.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 import '../../../mocks/services_mocks.dart';
@@ -21,14 +21,16 @@ void main() {
     getAndRegisterIssuesNetworkService();
     getAndRegisterNavigationService();
     getAndRegisterISharedPreferencesService();
+    getAndRegisterIIssueStorageService();
     getAndRegisterILocalStorageService();
   });
 
   tearDown(() {
+    removeRegistrationIfExists<ILocalStorageService>();
     removeRegistrationIfExists<NavigationService>();
     removeRegistrationIfExists<IIssuesNetworkService>();
     removeRegistrationIfExists<ISharedPreferencesService>();
-    removeRegistrationIfExists<ILocalStorageService>();
+    removeRegistrationIfExists<IIssueStorageService>();
   });
 
   group('IssuesViewmodel -', () {

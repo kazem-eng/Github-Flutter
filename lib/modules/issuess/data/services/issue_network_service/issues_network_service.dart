@@ -5,8 +5,8 @@ import 'package:flutter_issues_viewer/core/base/base_net_response/base_net_respo
 import 'package:flutter_issues_viewer/core/services/network_service.dart/i_network_service.dart';
 import 'package:flutter_issues_viewer/modules/issuess/data/models/issue_contracts.dart';
 import 'package:flutter_issues_viewer/modules/issuess/data/models/issue/issue_data_model.dart';
-import 'package:flutter_issues_viewer/modules/issuess/data/services/network_service/i_issues_network_service.dart';
-import 'package:flutter_issues_viewer/modules/issuess/data/services/network_service/issues_endpoints.dart';
+import 'package:flutter_issues_viewer/modules/issuess/data/services/issue_network_service/i_issues_network_service.dart';
+import 'package:flutter_issues_viewer/modules/issuess/data/services/issue_network_service/issues_endpoints.dart';
 import 'package:flutter_issues_viewer/modules/issuess/domain/entities/issue/issue.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 

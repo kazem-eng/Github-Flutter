@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:flutter_issues_viewer/core/base/base.dart';
 import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
 import 'package:flutter_issues_viewer/modules/issuess/data/services/services_export.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_details/issue_details_props.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_filter/issue_filter_callback.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_filter/issue_filter_props.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_sort/issue_sort_callback.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_sort/issue_sort_props.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issues/issues_model.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_details/issue_details_props.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_filter/issue_filter_callback.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_filter/issue_filter_props.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_sort/issue_sort_callback.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_sort/issue_sort_props.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issues/issues_model.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
@@ -19,8 +19,8 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
   // Injected services
   final _issuesNetworService = locator<IIssuesNetworkService>();
   final _navigationService = locator<NavigationService>();
-  final _corelocalStorageService = locator<ICoreLocalStorageService>();
-  final _localStorageService = locator<ILocalStorageService>();
+  final _corelocalStorageService = locator<ILocalStorageService>();
+  final _localStorageService = locator<IIssueStorageService>();
 
   late final IssueFilterCallback _filterBottomSheet;
   late final IssueSortCallback _sortBottomSheet;
@@ -129,7 +129,7 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
   }
 
   void switchTheme() {
-    _corelocalStorageService.setIsDarkTheme(
+    _corelocalStorageService.setDarkTheme(
       isDarkTheme: !_corelocalStorageService.isDarkTheme(),
     );
   }

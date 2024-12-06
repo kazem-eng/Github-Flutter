@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_issues_viewer/core/base/base_mvvm/base_view.dart';
 import 'package:flutter_issues_viewer/modules/issuess/data/models/issue_contracts.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_filter/issue_filter_props.dart';
-import 'package:flutter_issues_viewer/modules/issuess/views/issue_filter/issue_filter_viewmodel.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_filter/issue_filter_props.dart';
+import 'package:flutter_issues_viewer/modules/issuess/presentation/issue_filter/issue_filter_viewmodel.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/bottom_sheet/bottom_sheet_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_radio_item.dart';
 

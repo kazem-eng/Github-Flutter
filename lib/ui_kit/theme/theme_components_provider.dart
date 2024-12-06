@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_issues_viewer/core/services/core_local_storage_service/i_local_core_storage_service.dart';
+import 'package:flutter_issues_viewer/core/services/local_storage_service/i_local_storage_service.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 import 'package:flutter_issues_viewer/ui_kit/styles/colors.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme.dart';
@@ -22,7 +22,7 @@ class ThemeComponentsProvider extends StatefulWidget {
 }
 
 class _ThemeComponentsProviderState extends State<ThemeComponentsProvider> {
-  final _localCoreStorageService = locator<ICoreLocalStorageService>();
+  final _localCoreStorageService = locator<ILocalStorageService>();
   AppTheme _currentTheme = AppTheme.light;
 
   @override

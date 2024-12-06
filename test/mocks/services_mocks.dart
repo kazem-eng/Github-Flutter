@@ -12,8 +12,9 @@ import 'services_mocks.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<NavigationService>(onMissingStub: OnMissingStub.returnDefault),
-  MockSpec<IIssuesNetworkService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<ILocalStorageService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<IIssuesNetworkService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<IIssueStorageService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<ISharedPreferencesService>(
     onMissingStub: OnMissingStub.returnDefault,
   ),
@@ -29,6 +30,13 @@ ISharedPreferencesService getAndRegisterISharedPreferencesService() {
   removeRegistrationIfExists<ISharedPreferencesService>();
   final mock = MockISharedPreferencesService();
   locator.registerSingleton<ISharedPreferencesService>(mock);
+  return mock;
+}
+
+IIssueStorageService getAndRegisterIIssueStorageService() {
+  removeRegistrationIfExists<IIssueStorageService>();
+  final mock = MockIIssueStorageService();
+  locator.registerSingleton<IIssueStorageService>(mock);
   return mock;
 }
 
