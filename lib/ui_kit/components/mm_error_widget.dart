@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_issues_viewer/core/domain/base/base_exception.dart';
+import 'package:flutter_issues_viewer/core/base/base_exception.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_text.dart';
 
 class MMErrorWidget extends StatelessWidget {

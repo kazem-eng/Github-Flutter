@@ -6,14 +6,14 @@
 import 'dart:async' as _i5;
 import 'dart:ui' as _i8;
 
-import 'package:flutter_issues_viewer/core/domain/base/base.dart' as _i3;
-import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_callback.dart'
+import 'package:flutter_issues_viewer/core/base/base.dart' as _i3;
+import 'package:flutter_issues_viewer/modules/issuess/views/issue_filter/issue_filter_callback.dart'
     as _i6;
-import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_callback.dart'
+import 'package:flutter_issues_viewer/modules/issuess/views/issue_sort/issue_sort_callback.dart'
     as _i7;
-import 'package:flutter_issues_viewer/modules/views/issues/issues_model.dart'
+import 'package:flutter_issues_viewer/modules/issuess/views/issues/issues_model.dart'
     as _i2;
-import 'package:flutter_issues_viewer/modules/views/issues/issues_viewmodel.dart'
+import 'package:flutter_issues_viewer/modules/issuess/views/issues/issues_viewmodel.dart'
     as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 

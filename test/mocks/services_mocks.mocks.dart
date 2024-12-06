@@ -6,20 +6,20 @@
 import 'dart:async' as _i5;
 
 import 'package:flutter/material.dart' as _i1;
-import 'package:flutter_issues_viewer/core/domain/base/base_net_response/base_net_response.dart'
+import 'package:flutter_issues_viewer/core/base/base_net_response/base_net_response.dart'
     as _i3;
-import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart'
-    as _i8;
-import 'package:flutter_issues_viewer/modules/data/services/local_storage_service/i_local_core_storage_service.dart'
-    as _i9;
-import 'package:flutter_issues_viewer/modules/data/services/network/i_issues_network_service.dart'
-    as _i6;
-import 'package:flutter_issues_viewer/modules/data/services/shared_preferences_service/i_shared_preferences_service.dart'
-    as _i10;
-import 'package:flutter_issues_viewer/modules/domain/entities/issue/issue.dart'
-    as _i7;
-import 'package:flutter_issues_viewer/navigation/navigation_service.dart'
+import 'package:flutter_issues_viewer/core/services/navigation_service/navigation_service.dart'
     as _i4;
+import 'package:flutter_issues_viewer/core/services/shared_preferences_service/i_shared_preferences_service.dart'
+    as _i10;
+import 'package:flutter_issues_viewer/modules/issuess/data/models/issue_contracts.dart'
+    as _i8;
+import 'package:flutter_issues_viewer/modules/issuess/data/services/local_storage_service/i_local_storage_service.dart'
+    as _i9;
+import 'package:flutter_issues_viewer/modules/issuess/data/services/network_service/i_issues_network_service.dart'
+    as _i6;
+import 'package:flutter_issues_viewer/modules/issuess/domain/entities/issue/issue.dart'
+    as _i7;
 import 'package:mockito/mockito.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -184,28 +184,6 @@ class MockIIssuesNetworkService extends _i2.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockILocalStorageService extends _i2.Mock
     implements _i9.ILocalStorageService {
-  @override
-  bool isDarkTheme() => (super.noSuchMethod(
-        Invocation.method(
-          #isDarkTheme,
-          [],
-        ),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
-
-  @override
-  _i5.Future<bool> setIsDarkTheme({required bool? isDarkTheme}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #setIsDarkTheme,
-          [],
-          {#isDarkTheme: isDarkTheme},
-        ),
-        returnValue: _i5.Future<bool>.value(false),
-        returnValueForMissingStub: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
-
   @override
   List<String> getViewedIssues() => (super.noSuchMethod(
         Invocation.method(

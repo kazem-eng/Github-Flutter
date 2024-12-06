@@ -2,12 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'package:flutter_issues_viewer/core/domain/base/base.dart';
-import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_model.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_props.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_viewmodel.dart';
-import 'package:flutter_issues_viewer/navigation/navigation_service.dart';
+import 'package:flutter_issues_viewer/core/base/base.dart';
+import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
+import 'package:flutter_issues_viewer/modules/issuess/data/models/issue_contracts.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issue_sort/issue_sort_model.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issue_sort/issue_sort_props.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issue_sort/issue_sort_viewmodel.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 import '../../../mocks/services_mocks.dart';

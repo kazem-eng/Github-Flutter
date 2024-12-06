@@ -1,15 +1,15 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import 'package:flutter_issues_viewer/core/domain/base/base.dart';
-import 'package:flutter_issues_viewer/modules/data/models/issue_contracts.dart';
-import 'package:flutter_issues_viewer/modules/data/services/services_export.dart';
-import 'package:flutter_issues_viewer/modules/domain/entities/issue/issue.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_props.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_props.dart';
-import 'package:flutter_issues_viewer/modules/views/issues/issues_model.dart';
-import 'package:flutter_issues_viewer/modules/views/issues/issues_viewmodel.dart';
-import 'package:flutter_issues_viewer/navigation/navigation_service.dart';
+import 'package:flutter_issues_viewer/core/base/base.dart';
+import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
+import 'package:flutter_issues_viewer/modules/issuess/data/models/issue_contracts.dart';
+import 'package:flutter_issues_viewer/modules/issuess/data/services/services_export.dart';
+import 'package:flutter_issues_viewer/modules/issuess/domain/entities/issue/issue.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issue_filter/issue_filter_props.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issue_sort/issue_sort_props.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issues/issues_model.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issues/issues_viewmodel.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 import '../../../mocks/services_mocks.dart';

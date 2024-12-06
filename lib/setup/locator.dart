@@ -1,13 +1,12 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:flutter_issues_viewer/core/domain/services/network_service.dart/network_export.dart';
-import 'package:flutter_issues_viewer/modules/data/services/services_export.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_details/issue_details_viewmodel.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_filter/issue_filter_viewmodel.dart';
-import 'package:flutter_issues_viewer/modules/views/issue_sort/issue_sort_viewmodel.dart';
-import 'package:flutter_issues_viewer/modules/views/issues/issues_viewmodel.dart';
-import 'package:flutter_issues_viewer/navigation/navigation_service.dart';
+import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
+import 'package:flutter_issues_viewer/modules/issuess/data/services/services_export.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issue_details/issue_details_viewmodel.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issue_filter/issue_filter_viewmodel.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issue_sort/issue_sort_viewmodel.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issues/issues_viewmodel.dart';
 
 final locator = GetIt.instance;
 
@@ -20,6 +19,7 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<ISharedPreferencesService>(
       () => SharedPreferencesService(preferences: sharedPreferences),
     )
+    ..registerSingleton<ICoreLocalStorageService>(CoreLocalStorageService())
     ..registerLazySingleton<ILocalStorageService>(() => LocalStorageService())
     // ------------------------------------------------------------
 

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_issues_viewer/modules/views/issues/issues_view.dart';
-import 'package:flutter_issues_viewer/navigation/navigation_service.dart';
-import 'package:flutter_issues_viewer/navigation/routes_handler.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
+import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
+import 'package:flutter_issues_viewer/modules/issuess/views/issues/issues_view.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme_components_provider.dart';
 
 class App extends StatelessWidget {
