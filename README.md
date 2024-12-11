@@ -1,4 +1,4 @@
-# flutter_issues_viewer
+# Github-Flutter
 
 An app to view issues on the Flutter repository with the limited filter and sort functionality
 
