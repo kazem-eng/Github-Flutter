@@ -6,7 +6,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mmTheme = MMTheme.of(context);
-    final vm = context.watch<IssueDetailsViewmodel>();
+    final vm = context.watch<IssueDetailsCubit>();
     return Flexible(
       child: Container(
         margin: const EdgeInsets.all(kSpace2),

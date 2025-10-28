@@ -24,7 +24,7 @@ class _SuccessState extends State<_Success> {
   }
 
   void _onScroll() {
-    final vm = context.read<IssuesViewmodel>();
+    final vm = context.read<IssuesCubit>();
     if (_scrollController.position.atEdge) {
       bool isEnd = _scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent;
@@ -36,7 +36,7 @@ class _SuccessState extends State<_Success> {
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<IssuesViewmodel>();
+    final vm = context.watch<IssuesCubit>();
     final issues = vm.model.issues;
     return _Wrapper(
       child: issues.isEmpty

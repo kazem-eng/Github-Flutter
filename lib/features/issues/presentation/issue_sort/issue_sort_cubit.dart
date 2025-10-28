@@ -5,8 +5,8 @@ import 'package:flutter_issues_viewer/features/issues/data/models/issue_contract
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_model.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_props.dart';
 
-class IssueSortViewmodel extends BaseViewModel<BaseState<IssueSortModel>> {
-  IssueSortViewmodel({
+class IssueSortCubit extends BaseCubit<BaseState<IssueSortModel>> {
+  IssueSortCubit({
     BaseState<IssueSortModel> initState = const BaseState.initial(),
   }) : super(initState);
 
@@ -25,7 +25,7 @@ class IssueSortViewmodel extends BaseViewModel<BaseState<IssueSortModel>> {
 
   void onSortChanged(IssuesSortBy sort) {
     _model = _model.copyWith(selectedSort: sort);
-    notifyListeners();
+    setState = BaseState.success(_model);
     _navigationService.goBack(_model.selectedSort);
   }
 }

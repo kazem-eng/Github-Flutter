@@ -2,9 +2,8 @@ import 'package:flutter_issues_viewer/core/base/base.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_details/issue_details_model.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_details/issue_details_props.dart';
 
-class IssueDetailsViewmodel
-    extends BaseViewModel<BaseState<IssueDetailsModel>> {
-  IssueDetailsViewmodel({
+class IssueDetailsCubit extends BaseCubit<BaseState<IssueDetailsModel>> {
+  IssueDetailsCubit({
     BaseState<IssueDetailsModel> initState = const BaseState.initial(),
   }) : super(initState);
 

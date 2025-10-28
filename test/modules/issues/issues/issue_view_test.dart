@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 
 import 'package:flutter_issues_viewer/core/base/base.dart';
 import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
@@ -8,13 +7,12 @@ import 'package:flutter_issues_viewer/features/issues/data/services/issue_networ
 import 'package:flutter_issues_viewer/features/issues/data/services/issue_storage_service/i_issue_storage_service.dart';
 import 'package:flutter_issues_viewer/features/issues/domain/entities/issue/issue.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_view.dart';
-import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_viewmodel.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_cubit.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_components_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/theme/theme_export.dart';
 
 import '../../../mocks/services_mocks.dart';
-import 'issue_view_test.mocks.dart';
 
 void main() {
   setUpAll(() {
@@ -24,9 +22,8 @@ void main() {
     getAndRegisterIIssueStorageService();
     getAndRegisterILocalStorageService();
 
-    // Register the IssuesViewmodel
-    locator.registerFactory(() => MockIssuesViewmodel());
-    locator.registerFactory(() => IssuesViewmodel());
+    // Register the IssuesCubit
+    locator.registerFactory(() => IssuesCubit());
   });
 
   tearDownAll(() {
@@ -55,11 +52,6 @@ void main() {
       getAndRegisterIssuesNetworkService(
         issuesStub: const BaseNetResponse.success([]),
       );
-      final mockViewModel = locator<MockIssuesViewmodel>();
-      when(mockViewModel.state).thenReturn(
-        const BaseState.loading(),
-      );
-
       await tester.pumpWidget(
         createTestableWidget(const IssuesView()),
       );

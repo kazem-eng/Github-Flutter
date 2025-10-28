@@ -7,7 +7,7 @@ class _Wrapper extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<IssuesViewmodel>();
+    final vm = context.watch<IssuesCubit>();
     final theme = MMTheme.of(context);
     final themeColor = MMTheme.of(context).color;
     final isDark = theme.theme == AppTheme.dark;

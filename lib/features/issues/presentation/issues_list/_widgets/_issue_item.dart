@@ -7,7 +7,7 @@ class _IssueItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<IssuesViewmodel>();
+    final vm = context.watch<IssuesCubit>();
     final color = MMTheme.of(context).color;
     final issue = vm.model.issues[issueIndex];
     final viewed = issue.isViewed ? 'Viewed  \uD83D\uDC40 |' : '';

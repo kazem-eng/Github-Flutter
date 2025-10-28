@@ -11,8 +11,8 @@ import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/is
 import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_model.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
-class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
-  IssuesViewmodel({
+class IssuesCubit extends BaseCubit<BaseState<IssuesModel>> {
+  IssuesCubit({
     BaseState<IssuesModel> initState = const BaseState.loading(),
   }) : super(initState);
 
@@ -62,7 +62,7 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
   Future<void> _getStorageData() async {
     final viewedIssues = _localStorageService.getViewedIssues();
     _model = _model.copyWith(viewedIssueIds: viewedIssues);
-    notifyListeners();
+    emit(state);
   }
 
   void _addViewedIssue({required int index}) {
@@ -71,7 +71,7 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
     viewedIssues.add(_model.issues[index].id.toString());
     _model = _model.copyWith(viewedIssueIds: viewedIssues);
     _localStorageService.setViewedIssues(viewedIssues);
-    notifyListeners();
+    setState = BaseState.success(_model);
   }
 
   // Events

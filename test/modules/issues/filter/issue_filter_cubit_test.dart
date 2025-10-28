@@ -7,7 +7,7 @@ import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
 import 'package:flutter_issues_viewer/features/issues/data/models/issue_contracts.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/issue_filter_model.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/issue_filter_props.dart';
-import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/issue_filter_viewmodel.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/issue_filter_cubit.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 import '../../../mocks/services_mocks.dart';
@@ -22,25 +22,25 @@ class IssueFilterCallback {
 }
 
 void main() {
-  late IssueFilterViewmodel viewModel;
+  late IssueFilterCubit cubit;
   late NavigationService mockNavigationService;
 
   setUp(() {
     mockNavigationService = getAndRegisterNavigationService();
-    viewModel = IssueFilterViewmodel();
+    cubit = IssueFilterCubit();
   });
 
   tearDown(() {
     removeRegistrationIfExists<NavigationService>();
   });
 
-  group('IssueFilterViewmodel - ', () {
+  group('IssueFilterCubit - ', () {
     test(
         'Given initial state, '
         'When view model is created, '
         'Then state is BaseState.initial', () {
       // arrange & act & assert
-      expect(viewModel.state, const BaseState<IssueFilterModel>.initial());
+      expect(cubit.state, const BaseState<IssueFilterModel>.initial());
     });
 
     test(
@@ -53,11 +53,11 @@ void main() {
       );
 
       // act
-      await viewModel.initVM(props);
+      await cubit.initVM(props);
 
       // assert
-      expect(viewModel.model.selectedFilter, IssuesFilterBy.assigned);
-      expect(viewModel.state, BaseState.success(viewModel.model));
+      expect(cubit.model.selectedFilter, IssuesFilterBy.assigned);
+      expect(cubit.state, BaseState.success(cubit.model));
     });
 
     test(
@@ -68,10 +68,10 @@ void main() {
       const filter = IssuesFilterBy.mentioned;
 
       // act
-      viewModel.onFilterChanged(filter);
+      cubit.onFilterChanged(filter);
 
       // assert
-      expect(viewModel.model.selectedFilter, filter);
+      expect(cubit.model.selectedFilter, filter);
       verify(mockNavigationService.goBack(filter)).called(1);
     });
   });

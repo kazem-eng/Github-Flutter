@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_issues_viewer/core/base/base_mvvm/base_viewmodel.dart';
+import 'package:flutter_issues_viewer/core/base/base_mvvm/base_cubit.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
-class BaseView<T extends BaseViewModel> extends StatefulWidget {
+class BaseView<T extends BaseCubit> extends StatefulWidget {
   const BaseView({
     required this.builder,
     this.initViewModel,
@@ -29,14 +29,15 @@ class BaseView<T extends BaseViewModel> extends StatefulWidget {
   State<BaseView<T>> createState() => _BaseViewState<T>();
 }
 
-class _BaseViewState<T extends BaseViewModel> extends State<BaseView<T>> {
-  final T viewModel = locator<T>();
+class _BaseViewState<T extends BaseCubit> extends State<BaseView<T>> {
+  late final T viewModel = locator<T>();
 
   @override
   void initState() {
     super.initState();
     if (!viewModel.initialised) {
       widget.initViewModel?.call(viewModel);
+      viewModel.setInitialized = true;
     }
   }
 
@@ -48,22 +49,23 @@ class _BaseViewState<T extends BaseViewModel> extends State<BaseView<T>> {
 
   @override
   Widget build(BuildContext context) {
+    Widget buildChild() => Builder(
+          builder: (context) {
+            final vm = context.watch<T>();
+            return widget.builder(context, vm, widget.notRebuild);
+          },
+        );
+
     if (!widget.disposeVM) {
-      return ChangeNotifierProvider.value(
+      return BlocProvider<T>.value(
         value: viewModel,
-        child: Consumer(
-          builder: widget.builder,
-          child: widget.notRebuild,
-        ),
+        child: buildChild(),
       );
     }
 
-    return ChangeNotifierProvider(
+    return BlocProvider<T>(
       create: (_) => viewModel,
-      child: Consumer(
-        builder: widget.builder,
-        child: widget.notRebuild,
-      ),
+      child: buildChild(),
     );
   }
 }

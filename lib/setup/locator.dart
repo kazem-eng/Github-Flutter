@@ -3,10 +3,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
 import 'package:flutter_issues_viewer/features/issues/data/services/services_export.dart';
-import 'package:flutter_issues_viewer/features/issues/presentation/issue_details/issue_details_viewmodel.dart';
-import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/issue_filter_viewmodel.dart';
-import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_viewmodel.dart';
-import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_viewmodel.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_details/issue_details_cubit.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/issue_filter_cubit.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_cubit.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_cubit.dart';
 
 final locator = GetIt.instance;
 
@@ -27,11 +27,11 @@ Future<void> configureDependencies() async {
     ..registerFactory<IIssuesNetworkService>(() => IssuesNetworkService())
     ..registerLazySingleton<IIssueStorageService>(() => IssueStorageService())
 
-    // Viewmodels
-    ..registerFactory(() => IssueFilterViewmodel())
-    ..registerFactory(() => IssueSortViewmodel())
-    ..registerFactory(() => IssueDetailsViewmodel())
-    ..registerFactory(() => IssuesViewmodel());
+    // Cubits
+    ..registerFactory(() => IssueFilterCubit())
+    ..registerFactory(() => IssueSortCubit())
+    ..registerFactory(() => IssueDetailsCubit())
+    ..registerFactory(() => IssuesCubit());
 
   // ------------------------------------------------------------
 }

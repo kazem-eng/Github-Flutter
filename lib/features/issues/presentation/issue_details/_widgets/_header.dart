@@ -6,7 +6,7 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mmTheme = MMTheme.of(context);
-    final issue = context.watch<IssueDetailsViewmodel>().model.issue;
+    final issue = context.watch<IssueDetailsCubit>().model.issue;
 
     return Padding(
       padding: const EdgeInsets.all(kSpace2),

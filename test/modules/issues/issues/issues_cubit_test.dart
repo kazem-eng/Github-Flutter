@@ -9,12 +9,12 @@ import 'package:flutter_issues_viewer/features/issues/domain/entities/issue/issu
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/issue_filter_props.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_props.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_model.dart';
-import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_viewmodel.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_cubit.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 import '../../../mocks/services_mocks.dart';
-import '../filter/issue_filter_viewmodel_test.mocks.dart';
-import '../sort/issue_sort_viewmodel_test.mocks.dart';
+import '../filter/issue_filter_cubit_test.mocks.dart';
+import '../sort/issue_sort_cubit_test.mocks.dart';
 
 void main() {
   setUp(() {
@@ -33,16 +33,16 @@ void main() {
     removeRegistrationIfExists<IIssueStorageService>();
   });
 
-  group('IssuesViewmodel -', () {
+  group('IssuesCubit -', () {
     test(
         'Given initial state, '
         'When view model is created, '
         'Then state is BaseState.loading', () {
       // arrange & act
-      final viewModel = IssuesViewmodel();
+      final cubit = IssuesCubit();
 
       // assert
-      expect(viewModel.state, const BaseState<IssuesModel>.loading());
+      expect(cubit.state, const BaseState<IssuesModel>.loading());
     });
 
     test(
@@ -59,22 +59,22 @@ void main() {
         issuesStub: const BaseNetResponse.success(issues),
       );
 
-      final viewModel = IssuesViewmodel();
+      final cubit = IssuesCubit();
 
       // act
-      await viewModel.initCalendar(
+      await cubit.initCalendar(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: (IssueSortProps _) => Future.value(),
       );
 
       // assert
       verify(issueNetService.issues());
-      expect(viewModel.state, BaseState.success(viewModel.model));
-      expect(viewModel.model.currentPage, 1);
-      expect(viewModel.model.filteredBy, isNull);
-      expect(viewModel.model.sortBy, isNull);
-      expect(viewModel.model.issues, isNotEmpty);
-      expect(viewModel.model.issues, issues);
+      expect(cubit.state, BaseState.success(cubit.model));
+      expect(cubit.model.currentPage, 1);
+      expect(cubit.model.filteredBy, isNull);
+      expect(cubit.model.sortBy, isNull);
+      expect(cubit.model.issues, isNotEmpty);
+      expect(cubit.model.issues, issues);
     });
 
     test(
@@ -97,22 +97,22 @@ void main() {
       getAndRegisterIssuesNetworkService(
         issuesStub: const BaseNetResponse.success(initIssues),
       );
-      final viewModel = IssuesViewmodel();
+      final cubit = IssuesCubit();
       // act
-      await viewModel.initCalendar(
+      await cubit.initCalendar(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: sortMock.sortIssues,
       );
       // assert
-      expect(viewModel.model.sortBy, isNull); // default sort
-      expect(viewModel.model.issues, initIssues);
+      expect(cubit.model.sortBy, isNull); // default sort
+      expect(cubit.model.issues, initIssues);
 
       // Model after sort
       // act
-      await viewModel.sort();
+      await cubit.sort();
 
       // assert
-      expect(viewModel.model.sortBy, expectedSort);
+      expect(cubit.model.sortBy, expectedSort);
     });
     test(
         'Given a filter option, '
@@ -133,24 +133,24 @@ void main() {
       getAndRegisterIssuesNetworkService(
         issuesStub: const BaseNetResponse.success(initIssues),
       );
-      final viewModel = IssuesViewmodel();
+      final cubit = IssuesCubit();
       // act
-      await viewModel.initCalendar(
+      await cubit.initCalendar(
         filterBottomSheet: filterMock.filterIssues,
         sortBottomSheet: (IssueSortProps props) {
           return Future.value();
         },
       );
       // assert
-      expect(viewModel.model.filteredBy, isNull); // default filter
-      expect(viewModel.model.issues, initIssues);
+      expect(cubit.model.filteredBy, isNull); // default filter
+      expect(cubit.model.issues, initIssues);
 
       // Model after filter
       // act
-      await viewModel.filter();
+      await cubit.filter();
 
       // assert
-      expect(viewModel.model.filteredBy, expectedFilter);
+      expect(cubit.model.filteredBy, expectedFilter);
     });
 
     test(
@@ -168,8 +168,8 @@ void main() {
       getAndRegisterIssuesNetworkService(
         issuesStub: const BaseNetResponse.success(initialIssues),
       );
-      final viewModel = IssuesViewmodel();
-      await viewModel.initCalendar(
+      final cubit = IssuesCubit();
+      await cubit.initCalendar(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: (IssueSortProps _) => Future.value(),
       );
@@ -180,12 +180,12 @@ void main() {
       );
 
       // act
-      await viewModel.moreIssues();
+      await cubit.moreIssues();
 
       // assert
-      expect(viewModel.model.currentPage, 2);
-      expect(viewModel.model.issues.length, 2);
-      expect(viewModel.state, BaseState.success(viewModel.model));
+      expect(cubit.model.currentPage, 2);
+      expect(cubit.model.issues.length, 2);
+      expect(cubit.state, BaseState.success(cubit.model));
     });
   });
 }

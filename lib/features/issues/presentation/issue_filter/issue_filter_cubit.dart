@@ -5,8 +5,8 @@ import 'package:flutter_issues_viewer/features/issues/data/models/issue_contract
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/issue_filter_model.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/issue_filter_props.dart';
 
-class IssueFilterViewmodel extends BaseViewModel<BaseState<IssueFilterModel>> {
-  IssueFilterViewmodel({
+class IssueFilterCubit extends BaseCubit<BaseState<IssueFilterModel>> {
+  IssueFilterCubit({
     BaseState<IssueFilterModel> initState = const BaseState.initial(),
   }) : super(initState);
   // Injected services
@@ -24,7 +24,7 @@ class IssueFilterViewmodel extends BaseViewModel<BaseState<IssueFilterModel>> {
 
   void onFilterChanged(IssuesFilterBy filter) {
     _model = _model.copyWith(selectedFilter: filter);
-    notifyListeners();
+    setState = BaseState.success(_model);
     _navigationService.goBack(_model.selectedFilter);
   }
 }

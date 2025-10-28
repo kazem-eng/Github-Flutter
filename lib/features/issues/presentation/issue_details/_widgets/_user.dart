@@ -5,7 +5,7 @@ class _User extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final issue = context.watch<IssueDetailsViewmodel>().model.issue;
+    final issue = context.watch<IssueDetailsCubit>().model.issue;
     return ListTile(
       leading: CircleAvatar(
         radius: kSpace3,

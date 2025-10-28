@@ -7,7 +7,7 @@ import 'package:flutter_issues_viewer/core/services/core_services_export.dart';
 import 'package:flutter_issues_viewer/features/issues/data/models/issue_contracts.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_model.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_props.dart';
-import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_viewmodel.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_cubit.dart';
 import 'package:flutter_issues_viewer/setup/locator.dart';
 
 import '../../../mocks/services_mocks.dart';
@@ -22,26 +22,26 @@ class IssueSortCallback {
 }
 
 void main() {
-  late IssueSortViewmodel viewModel;
+  late IssueSortCubit cubit;
   late NavigationService mockNavigationService;
 
   setUp(() {
     mockNavigationService = getAndRegisterNavigationService();
 
-    viewModel = IssueSortViewmodel();
+    cubit = IssueSortCubit();
   });
 
   tearDown(() {
     removeRegistrationIfExists<NavigationService>();
   });
 
-  group('IssueSortViewmodel - ', () {
+  group('IssueSortCubit - ', () {
     test(
         'Given initial state, '
         'When view model is created, '
         'Then state is BaseState.initial', () {
       // arrange & act & assert
-      expect(viewModel.state, const BaseState<IssueSortModel>.initial());
+      expect(cubit.state, const BaseState<IssueSortModel>.initial());
     });
 
     test(
@@ -54,11 +54,11 @@ void main() {
       );
 
       // act
-      await viewModel.initVM(props);
+      await cubit.initVM(props);
 
       // assert
-      expect(viewModel.model.selectedSort, IssuesSortBy.created);
-      expect(viewModel.state, BaseState.success(viewModel.model));
+      expect(cubit.model.selectedSort, IssuesSortBy.created);
+      expect(cubit.state, BaseState.success(cubit.model));
     });
 
     test(
@@ -69,10 +69,10 @@ void main() {
       const sort = IssuesSortBy.updated;
 
       // act
-      viewModel.onSortChanged(sort);
+      cubit.onSortChanged(sort);
 
       // assert
-      expect(viewModel.model.selectedSort, sort);
+      expect(cubit.model.selectedSort, sort);
       verify(mockNavigationService.goBack(sort));
     });
   });

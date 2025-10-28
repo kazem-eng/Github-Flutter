@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_issues_viewer/core/base/base.dart';
 import 'package:flutter_issues_viewer/core/helpers/bottom_sheet_helper.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_filter/issue_filter_view.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_props.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_sort/issue_sort_view.dart';
-import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_viewmodel.dart';
+import 'package:flutter_issues_viewer/features/issues/presentation/issues_list/issues_cubit.dart';
 import 'package:flutter_issues_viewer/ui_kit/components/mm_components_export.dart';
 import 'package:flutter_issues_viewer/ui_kit/styles/constants.dart';
 import 'package:flutter_issues_viewer/ui_kit/styles/spacers.dart';
@@ -28,7 +28,7 @@ class IssuesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<IssuesViewmodel>(
+    return BaseView<IssuesCubit>(
       initViewModel: (vm) {
         Future<IssuesFilterBy?> filterBottomSheet(
           IssueFilterProps props,
