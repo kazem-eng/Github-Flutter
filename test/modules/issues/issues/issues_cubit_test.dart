@@ -62,7 +62,7 @@ void main() {
       final cubit = IssuesCubit();
 
       // act
-      await cubit.initCalendar(
+      await cubit.initCubit(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: (IssueSortProps _) => Future.value(),
       );
@@ -99,7 +99,7 @@ void main() {
       );
       final cubit = IssuesCubit();
       // act
-      await cubit.initCalendar(
+      await cubit.initCubit(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: sortMock.sortIssues,
       );
@@ -135,7 +135,7 @@ void main() {
       );
       final cubit = IssuesCubit();
       // act
-      await cubit.initCalendar(
+      await cubit.initCubit(
         filterBottomSheet: filterMock.filterIssues,
         sortBottomSheet: (IssueSortProps props) {
           return Future.value();
@@ -169,7 +169,7 @@ void main() {
         issuesStub: const BaseNetResponse.success(initialIssues),
       );
       final cubit = IssuesCubit();
-      await cubit.initCalendar(
+      await cubit.initCubit(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: (IssueSortProps _) => Future.value(),
       );
