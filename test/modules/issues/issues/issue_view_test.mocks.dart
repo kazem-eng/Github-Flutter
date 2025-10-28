@@ -114,7 +114,7 @@ class MockIssuesViewmodel extends _i1.Mock implements _i4.IssuesViewmodel {
       ) as bool);
 
   @override
-  _i5.Future<void> initCalendar({
+  _i5.Future<void> initCubit({
     required _i6.IssueFilterCallback? filterBottomSheet,
     required _i7.IssueSortCallback? sortBottomSheet,
   }) =>

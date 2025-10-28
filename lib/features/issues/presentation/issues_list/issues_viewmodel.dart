@@ -75,7 +75,7 @@ class IssuesViewmodel extends BaseViewModel<BaseState<IssuesModel>> {
   }
 
   // Events
-  Future<void> initCalendar({
+  Future<void> initCubit({
     required IssueFilterCallback filterBottomSheet,
     required IssueSortCallback sortBottomSheet,
   }) async {

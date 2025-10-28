@@ -1,7 +1,8 @@
 abstract class NetConstants {
   static const connectionTimeout = 20; // seconds
   static const baseURL = 'https://api.github.com/';
-  static const githubToken = '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';
+  static const githubToken =
+      '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';
 
   // header keys
   static const defaultHeader = {

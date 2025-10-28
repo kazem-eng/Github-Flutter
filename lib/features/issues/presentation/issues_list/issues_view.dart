@@ -50,7 +50,7 @@ class IssuesView extends StatelessWidget {
           ) as IssuesSortBy?;
         }
 
-        return vm.initCalendar(
+        return vm.initCubit(
           filterBottomSheet: filterBottomSheet,
           sortBottomSheet: sortBottomSheet,
         );

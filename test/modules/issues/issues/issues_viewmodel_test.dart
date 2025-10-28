@@ -62,7 +62,7 @@ void main() {
       final viewModel = IssuesViewmodel();
 
       // act
-      await viewModel.initCalendar(
+      await viewModel.initCubit(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: (IssueSortProps _) => Future.value(),
       );
@@ -99,7 +99,7 @@ void main() {
       );
       final viewModel = IssuesViewmodel();
       // act
-      await viewModel.initCalendar(
+      await viewModel.initCubit(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: sortMock.sortIssues,
       );
@@ -135,7 +135,7 @@ void main() {
       );
       final viewModel = IssuesViewmodel();
       // act
-      await viewModel.initCalendar(
+      await viewModel.initCubit(
         filterBottomSheet: filterMock.filterIssues,
         sortBottomSheet: (IssueSortProps props) {
           return Future.value();
@@ -169,7 +169,7 @@ void main() {
         issuesStub: const BaseNetResponse.success(initialIssues),
       );
       final viewModel = IssuesViewmodel();
-      await viewModel.initCalendar(
+      await viewModel.initCubit(
         filterBottomSheet: (IssueFilterProps _) => Future.value(),
         sortBottomSheet: (IssueSortProps _) => Future.value(),
       );
