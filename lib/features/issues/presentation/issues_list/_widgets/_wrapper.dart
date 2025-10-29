@@ -1,13 +1,14 @@
 part of '../issues_view.dart';
 
-class _Wrapper extends StatelessWidget {
+class _Wrapper extends ConsumerWidget {
   const _Wrapper({
     required this.child,
   });
   final Widget child;
   @override
-  Widget build(BuildContext context) {
-    final vm = context.watch<IssuesViewmodel>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = BaseViewProvider.of<IssuesViewmodel>(context);
+    final vm = ref.watch(provider);
     final theme = MMTheme.of(context);
     final themeColor = MMTheme.of(context).color;
     final isDark = theme.theme == AppTheme.dark;
@@ -20,7 +21,7 @@ class _Wrapper extends StatelessWidget {
         ),
         onPressed: () {
           theme.switchTheme(isDark ? AppTheme.light : AppTheme.dark);
-          vm.switchTheme();
+          ref.read(provider).switchTheme();
         },
       );
     }

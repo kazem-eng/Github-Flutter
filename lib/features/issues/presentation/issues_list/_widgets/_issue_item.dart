@@ -1,13 +1,14 @@
 part of '../issues_view.dart';
 
-class _IssueItem extends StatelessWidget {
+class _IssueItem extends ConsumerWidget {
   const _IssueItem(this.issueIndex);
 
   final int issueIndex;
 
   @override
-  Widget build(BuildContext context) {
-    final vm = context.watch<IssuesViewmodel>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = BaseViewProvider.of<IssuesViewmodel>(context);
+    final vm = ref.watch(provider);
     final color = MMTheme.of(context).color;
     final issue = vm.model.issues[issueIndex];
     final viewed = issue.isViewed ? 'Viewed  \uD83D\uDC40 |' : '';
@@ -22,7 +23,7 @@ class _IssueItem extends StatelessWidget {
         ),
       ),
       child: ListTile(
-        onTap: () => vm.openIssueDetails(issueIndex),
+        onTap: () => ref.read(provider).openIssueDetails(issueIndex),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,

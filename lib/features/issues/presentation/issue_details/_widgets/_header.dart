@@ -1,12 +1,13 @@
 part of '../issue_details_view.dart';
 
-class _Header extends StatelessWidget {
+class _Header extends ConsumerWidget {
   const _Header();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final mmTheme = MMTheme.of(context);
-    final issue = context.watch<IssueDetailsViewmodel>().model.issue;
+    final provider = BaseViewProvider.of<IssueDetailsViewmodel>(context);
+    final issue = ref.watch(provider).model.issue;
 
     return Padding(
       padding: const EdgeInsets.all(kSpace2),

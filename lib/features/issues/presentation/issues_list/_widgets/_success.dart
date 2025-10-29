@@ -1,18 +1,21 @@
 part of '../issues_view.dart';
 
-class _Success extends StatefulWidget {
+class _Success extends ConsumerStatefulWidget {
   const _Success();
 
   @override
-  State<_Success> createState() => _SuccessState();
+  ConsumerState<_Success> createState() => _SuccessState();
 }
 
-class _SuccessState extends State<_Success> {
-  final _scrollController = ScrollController();
+class _SuccessState extends ConsumerState<_Success> {
+  late final ScrollController _scrollController;
+  late final ChangeNotifierProvider<IssuesViewmodel> _provider;
 
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
+    _provider = BaseViewProvider.read<IssuesViewmodel>(context);
     _scrollController.addListener(_onScroll);
   }
 
@@ -24,7 +27,7 @@ class _SuccessState extends State<_Success> {
   }
 
   void _onScroll() {
-    final vm = context.read<IssuesViewmodel>();
+    final vm = ref.read(_provider);
     if (_scrollController.position.atEdge) {
       bool isEnd = _scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent;
@@ -36,7 +39,7 @@ class _SuccessState extends State<_Success> {
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<IssuesViewmodel>();
+    final vm = ref.watch(_provider);
     final issues = vm.model.issues;
     return _Wrapper(
       child: issues.isEmpty

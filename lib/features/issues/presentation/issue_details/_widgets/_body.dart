@@ -1,12 +1,13 @@
 part of '../issue_details_view.dart';
 
-class _Body extends StatelessWidget {
+class _Body extends ConsumerWidget {
   const _Body();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final mmTheme = MMTheme.of(context);
-    final vm = context.watch<IssueDetailsViewmodel>();
+    final provider = BaseViewProvider.of<IssueDetailsViewmodel>(context);
+    final vm = ref.watch(provider);
     return Flexible(
       child: Container(
         margin: const EdgeInsets.all(kSpace2),

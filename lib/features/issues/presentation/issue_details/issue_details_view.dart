@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_issues_viewer/core/base/base_mvvm/base_view.dart';
 import 'package:flutter_issues_viewer/features/issues/presentation/issue_details/issue_details_props.dart';
